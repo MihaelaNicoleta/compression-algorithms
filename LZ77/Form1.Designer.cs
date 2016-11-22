@@ -38,6 +38,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbOffset = new System.Windows.Forms.ListBox();
             this.lbLength = new System.Windows.Forms.ListBox();
+            this.btnLoadCompressedFile = new System.Windows.Forms.Button();
+            this.btnDecode = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbTokens = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLoad
@@ -83,21 +89,59 @@
             // 
             // lbOffset
             // 
-            resources.ApplyResources(this.lbOffset, "lbOffset");
             this.lbOffset.FormattingEnabled = true;
+            resources.ApplyResources(this.lbOffset, "lbOffset");
             this.lbOffset.Name = "lbOffset";
             // 
             // lbLength
             // 
-            resources.ApplyResources(this.lbLength, "lbLength");
             this.lbLength.FormattingEnabled = true;
+            resources.ApplyResources(this.lbLength, "lbLength");
             this.lbLength.Name = "lbLength";
+            // 
+            // btnLoadCompressedFile
+            // 
+            resources.ApplyResources(this.btnLoadCompressedFile, "btnLoadCompressedFile");
+            this.btnLoadCompressedFile.Name = "btnLoadCompressedFile";
+            this.btnLoadCompressedFile.UseVisualStyleBackColor = true;
+            // 
+            // btnDecode
+            // 
+            resources.ApplyResources(this.btnDecode, "btnDecode");
+            this.btnDecode.Name = "btnDecode";
+            this.btnDecode.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // tbTokens
+            // 
+            resources.ApplyResources(this.tbTokens, "tbTokens");
+            this.tbTokens.Name = "tbTokens";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
             // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbTokens);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnDecode);
+            this.Controls.Add(this.btnLoadCompressedFile);
             this.Controls.Add(this.lbLength);
             this.Controls.Add(this.lbOffset);
             this.Controls.Add(this.label3);
@@ -124,6 +168,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox lbOffset;
         private System.Windows.Forms.ListBox lbLength;
+        private System.Windows.Forms.Button btnLoadCompressedFile;
+        private System.Windows.Forms.Button btnDecode;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbTokens;
+        private System.Windows.Forms.Label label5;
     }
 }
 
