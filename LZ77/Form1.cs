@@ -47,5 +47,23 @@ namespace LZ77
             }
 
         }
+
+        private void btnLoadCompressedFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            dialog.Filter = "LZ77 Compressed Files (.lz77)|*.lz77";
+            dialog.FilterIndex = 1;
+            dialog.Multiselect = false;
+
+            DialogResult opened = dialog.ShowDialog();
+
+            if (opened == DialogResult.OK)
+            {
+                tbCompressedPath.Text = dialog.FileName;
+                compressedFileName = tbPath.Text;
+            }
+
+        }
     }
 }

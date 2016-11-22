@@ -40,7 +40,7 @@
             this.lbLength = new System.Windows.Forms.ListBox();
             this.btnLoadCompressedFile = new System.Windows.Forms.Button();
             this.btnDecode = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbCompressedPath = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbTokens = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -104,6 +104,7 @@
             resources.ApplyResources(this.btnLoadCompressedFile, "btnLoadCompressedFile");
             this.btnLoadCompressedFile.Name = "btnLoadCompressedFile";
             this.btnLoadCompressedFile.UseVisualStyleBackColor = true;
+            this.btnLoadCompressedFile.Click += new System.EventHandler(this.btnLoadCompressedFile_Click);
             // 
             // btnDecode
             // 
@@ -111,10 +112,10 @@
             this.btnDecode.Name = "btnDecode";
             this.btnDecode.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tbCompressedPath
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
+            resources.ApplyResources(this.tbCompressedPath, "tbCompressedPath");
+            this.tbCompressedPath.Name = "tbCompressedPath";
             // 
             // label4
             // 
@@ -139,7 +140,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbTokens);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbCompressedPath);
             this.Controls.Add(this.btnDecode);
             this.Controls.Add(this.btnLoadCompressedFile);
             this.Controls.Add(this.lbLength);
@@ -170,7 +171,7 @@
         private System.Windows.Forms.ListBox lbLength;
         private System.Windows.Forms.Button btnLoadCompressedFile;
         private System.Windows.Forms.Button btnDecode;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbCompressedPath;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbTokens;
         private System.Windows.Forms.Label label5;
