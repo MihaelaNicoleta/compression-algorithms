@@ -45,6 +45,7 @@
             resources.ApplyResources(this.btnLoad, "btnLoad");
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // chkDisplayTokens
             // 
