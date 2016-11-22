@@ -16,6 +16,11 @@ namespace LZ77
         String compressedFileName;
         String decompressedFileName;
 
+        int noBitsForOffset = 3;
+        int noBitsForLength = 2;
+
+        LZ77 coder;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +33,10 @@ namespace LZ77
             {
                 lbLength.Items.Add(i);
             }
+
+            lbOffset.SelectedIndex = 0;
+            lbLength.SelectedIndex = 0;
+
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -64,6 +73,18 @@ namespace LZ77
                 compressedFileName = tbPath.Text;
             }
 
+        }
+
+        private void btnEncode_Click(object sender, EventArgs e)
+        {
+            noBitsForOffset = (int)lbOffset.SelectedItem;
+            noBitsForLength = (int)lbLength.SelectedItem;
+
+            coder = new LZ77(noBitsForOffset, noBitsForLength);
+
+            String tt = coder.compress(inputFileName);
+
+            tbTokens.Text = tt;
         }
     }
 }

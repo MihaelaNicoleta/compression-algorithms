@@ -76,6 +76,7 @@
             resources.ApplyResources(this.btnEncode, "btnEncode");
             this.btnEncode.Name = "btnEncode";
             this.btnEncode.UseVisualStyleBackColor = true;
+            this.btnEncode.Click += new System.EventHandler(this.btnEncode_Click);
             // 
             // label2
             // 
