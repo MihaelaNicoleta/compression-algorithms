@@ -29,7 +29,9 @@ namespace LZ77
             {
                 lbOffset.Items.Add(i);
             }
-            for (int i = 2; i <= 5; i++)
+
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! pana la 5
+            for (int i = 2; i <= 6; i++)
             {
                 lbLength.Items.Add(i);
             }
@@ -81,10 +83,25 @@ namespace LZ77
             noBitsForLength = (int)lbLength.SelectedItem;
 
             coder = new LZ77(noBitsForOffset, noBitsForLength);
+            coder.compress(inputFileName);
 
-            String tt = coder.compress(inputFileName);
+            if (chkDisplayTokens.Checked)
+            {
+                List<Token> resultTokens = new List<Token>();
+                resultTokens = coder.getTokens();
 
-            tbTokens.Text = tt;
+                displayTokens(resultTokens);
+            }               
+
+        }
+
+        private void displayTokens(List<Token> tokens)
+        {
+            tbTokens.Text = "";
+            foreach (Token token in tokens)
+            {
+                tbTokens.Text += token.toString();
+            }
         }
     }
 }

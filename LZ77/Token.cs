@@ -50,6 +50,11 @@ namespace LZ77
             this.character = character;
         }
 
+        public String toString()
+        {
+            return "(" + this.offset + ", " + this.length + ", " + this.character + ") \r\n";
+        }
+
 
     }
 }
