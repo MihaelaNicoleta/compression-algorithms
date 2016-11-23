@@ -113,8 +113,7 @@ namespace LZ77
             }
 
             //generate the compressed file
-            //String compressedFile = "File.ext.o" + noBitsForOffset + "l" + noBitsForLength + ".lz77";
-            String compressedFile = "gettt.txt";
+            String compressedFile = "File.ext.o" + noBitsForOffset + "l" + noBitsForLength + ".lz77";
 
             BitWriter bitWriter = new BitWriter(compressedFile);
 
@@ -197,16 +196,18 @@ namespace LZ77
             int[] headerData = getOffsetAndLengthFromHeader(bitReader, fileSize);
             fileSize -= 8;
 
-            while (fileSize > 0)
+            int bitsRead = headerData[0] + headerData[1] + 8;
+
+            while ((fileSize > 0) && (fileSize >= bitsRead))
             {
                 tokenOffset = bitReader.readNBits(headerData[0]);
                 tokenLength = bitReader.readNBits(headerData[1]);
-                tokenCharacter = (char)bitReader.readNBits(headerData[0]);
+                tokenCharacter = (char)bitReader.readNBits(8);
 
                 token = new Token(tokenOffset, tokenLength, tokenCharacter);
                 decompressTokens.Add(token);
                 
-                var bitsRead = headerData[0] + headerData[1] + 8;
+                
                 fileSize -= bitsRead;
             }
 

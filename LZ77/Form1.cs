@@ -62,7 +62,7 @@ namespace LZ77
         {
             OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.Filter = "LZ77 Compressed Files (.lz77)|*.txt";
+            dialog.Filter = "LZ77 Compressed Files (.lz77)|*.lz77";
             dialog.FilterIndex = 1;
             dialog.Multiselect = false;
 
