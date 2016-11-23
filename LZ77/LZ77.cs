@@ -35,7 +35,7 @@ namespace LZ77
 
         }
 
-        public String compress(String fileToRead)
+        public Boolean compress(String fileToRead)
         {
 
             initializeBuffer(fileToRead);
@@ -53,7 +53,6 @@ namespace LZ77
             int off = 0;
 
             var pos = 0;
-
 
             while ((currentPosition < entryBuffer.Count()) && (currentPosition < maxNoBitsForLength + entryBuffer.Count()))
             {
@@ -89,13 +88,11 @@ namespace LZ77
                             }
                         }
                     }
-
                     currentPosition += tokenLength + 1;
                 }
                 else {
                     currentPosition++;
                 }
-
 
                 if ((currentPosition > entryBuffer.Count) && (tokenLength > 0))
                 {
@@ -120,10 +117,10 @@ namespace LZ77
 
             writeTokensToFile(tokens, bitWriter);
 
-            return "compress";
+            return true;
         }
 
-        public String decompress(String compressedFileToRead)
+        public Boolean decompress(String compressedFileToRead)
         {
             List<Token> decompressTokens = new List<Token>();
             BitReader bitReader = new BitReader(compressedFileToRead);
@@ -162,12 +159,12 @@ namespace LZ77
 
 
             //generate the decompressed file
-            String decompressedFile = "File.ext.o" + noBitsForOffset + "l" + noBitsForLength + ".lz77.ext";
+            String decompressedFile = "File.ext.o" + headerData[0] + "l" + headerData[1] + ".lz77.ext";
             BitWriter bitWriter = new BitWriter(decompressedFile);
 
             writeBufferToFile(decompressBuffer, bitWriter);
 
-            return "decompress";
+            return true;
         }
 
 

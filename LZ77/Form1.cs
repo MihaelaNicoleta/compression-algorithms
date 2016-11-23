@@ -28,15 +28,16 @@ namespace LZ77
             {
                 lbOffset.Items.Add(i);
             }
-
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! pana la 5
-            for (int i = 2; i <= 6; i++)
+            
+            for (int i = 2; i <= 5; i++)
             {
                 lbLength.Items.Add(i);
             }
 
             lbOffset.SelectedIndex = 0;
             lbLength.SelectedIndex = 0;
+
+            tbTokens.Text = "";
 
         }
 
@@ -84,7 +85,12 @@ namespace LZ77
             if(inputFileName != "")
             {
                 coder = new LZ77(noBitsForOffset, noBitsForLength);
-                coder.compress(inputFileName);
+                var ok = coder.compress(inputFileName);
+
+                if (ok == true)
+                {
+                    tbTokens.Text += "\r\nCompression was a great success.\r\n";
+                }
 
                 if (chkDisplayTokens.Checked)
                 {
@@ -103,7 +109,6 @@ namespace LZ77
 
         private void displayTokens(List<Token> tokens)
         {
-            tbTokens.Text = "";
             foreach (Token token in tokens)
             {
                 tbTokens.Text += token.toString();
@@ -115,7 +120,11 @@ namespace LZ77
             if (compressedFileName != "")
             { 
                 coder = new LZ77();
-                coder.decompress(compressedFileName);
+                var ok = coder.decompress(compressedFileName);
+                if(ok == true)
+                {
+                    tbTokens.Text += "\r\nDecompression was a great success.\r\n";
+                }
                 
             }
             else
