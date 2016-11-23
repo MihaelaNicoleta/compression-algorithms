@@ -17,6 +17,7 @@ namespace LZ77
         private List<Token> tokens = new List<Token>();
 
         private List<byte> entryBuffer;
+        private List<byte> decompressBuffer;
 
         public LZ77() { }
 
@@ -130,10 +131,38 @@ namespace LZ77
             FileInfo f = new FileInfo(compressedFileToRead);
             int nbr = 8 * (int)f.Length;
 
-            decompressTokens = generateTokensForDecompression(bitReader, nbr);
+            int[] headerData = getOffsetAndLengthFromHeader(bitReader, nbr);
+            decompressTokens = generateTokensForDecompression(bitReader, nbr, headerData);
 
-            //generate the compressed file
-            String decompressedFile = "File.ext.o" + noBitsForOffset + "l" + noBitsForLength + ".lz77.ext";
+            decompressBuffer = new List<byte>((int)Math.Pow(2, headerData[0] + headerData[1]));
+
+            this.maxNoBitsForOffset = (int)Math.Pow(2, headerData[0]);
+            this.maxNoBitsForLength = (int)Math.Pow(2, headerData[1]);
+            int currentPosition = 0;
+
+            foreach (Token token in decompressTokens)
+            {
+                if ((token.getOffset() == 0) && (token.getLength() == 0))
+                   {
+                       decompressBuffer.Add((byte)token.getCharacter());
+                       currentPosition++;
+                   }
+                   else
+                   {
+                       var aux = currentPosition;
+                       for (int i = 0; i < token.getLength(); i++)
+                       {
+                           decompressBuffer.Add(decompressBuffer[aux - token.getOffset() + i - 1]);
+                           currentPosition++;
+                       }
+                       decompressBuffer.Add((byte)token.getCharacter());
+                       currentPosition++;
+                   }
+               } 
+
+
+                //generate the compressed file
+                String decompressedFile = "File.ext.o" + noBitsForOffset + "l" + noBitsForLength + ".lz77.ext";
             BitWriter bitWriter = new BitWriter(decompressedFile);
 
             return "decompress";
@@ -184,7 +213,7 @@ namespace LZ77
             return tokens;
         }
 
-        private List<Token> generateTokensForDecompression(BitReader bitReader, int fileSize)
+        private List<Token> generateTokensForDecompression(BitReader bitReader, int fileSize, int[] headerData)
         {
             List<Token> decompressTokens = new List<Token>();
             Token token;
@@ -192,8 +221,8 @@ namespace LZ77
             int tokenOffset;
             int tokenLength;
             char tokenCharacter;
-
-            int[] headerData = getOffsetAndLengthFromHeader(bitReader, fileSize);
+            
+            // read 8b from header
             fileSize -= 8;
 
             int bitsRead = headerData[0] + headerData[1] + 8;
