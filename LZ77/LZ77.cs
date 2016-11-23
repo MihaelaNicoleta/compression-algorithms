@@ -161,9 +161,11 @@ namespace LZ77
                } 
 
 
-                //generate the compressed file
-                String decompressedFile = "File.ext.o" + noBitsForOffset + "l" + noBitsForLength + ".lz77.ext";
+            //generate the decompressed file
+            String decompressedFile = "File.ext.o" + noBitsForOffset + "l" + noBitsForLength + ".lz77.ext";
             BitWriter bitWriter = new BitWriter(decompressedFile);
+
+            writeBufferToFile(decompressBuffer, bitWriter);
 
             return "decompress";
         }
@@ -262,6 +264,14 @@ namespace LZ77
             }
             
             return headerData;
+        }
+
+        private void writeBufferToFile(List<byte> buffer, BitWriter bitWriter)
+        {
+            foreach (byte buf in buffer)
+            {
+                bitWriter.writeNBits(buf, 8);
+            }
         }
     }
 }
