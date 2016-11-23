@@ -14,7 +14,6 @@ namespace LZ77
     {
         String inputFileName;
         String compressedFileName;
-        String decompressedFileName;
 
         int noBitsForOffset = 3;
         int noBitsForLength = 2;
@@ -63,7 +62,7 @@ namespace LZ77
         {
             OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.Filter = "LZ77 Compressed Files (.lz77)|*.lz77";
+            dialog.Filter = "LZ77 Compressed Files (.lz77)|*.txt";
             dialog.FilterIndex = 1;
             dialog.Multiselect = false;
 
@@ -72,7 +71,7 @@ namespace LZ77
             if (opened == DialogResult.OK)
             {
                 tbCompressedPath.Text = dialog.FileName;
-                compressedFileName = tbPath.Text;
+                compressedFileName = tbCompressedPath.Text;
             }
 
         }
@@ -82,16 +81,23 @@ namespace LZ77
             noBitsForOffset = (int)lbOffset.SelectedItem;
             noBitsForLength = (int)lbLength.SelectedItem;
 
-            coder = new LZ77(noBitsForOffset, noBitsForLength);
-            coder.compress(inputFileName);
-
-            if (chkDisplayTokens.Checked)
+            if(inputFileName != "")
             {
-                List<Token> resultTokens = new List<Token>();
-                resultTokens = coder.getTokens();
+                coder = new LZ77(noBitsForOffset, noBitsForLength);
+                coder.compress(inputFileName);
 
-                displayTokens(resultTokens);
-            }               
+                if (chkDisplayTokens.Checked)
+                {
+                    List<Token> resultTokens = new List<Token>();
+                    resultTokens = coder.getTokens();
+
+                    displayTokens(resultTokens);
+                }
+            }
+            else
+            {
+                throw new Exception("You haven't selecetd any file.");
+            }        
 
         }
 
@@ -101,6 +107,20 @@ namespace LZ77
             foreach (Token token in tokens)
             {
                 tbTokens.Text += token.toString();
+            }
+        }
+
+        private void btnDecode_Click(object sender, EventArgs e)
+        {
+            if (compressedFileName != "")
+            { 
+                coder = new LZ77();
+                coder.decompress(compressedFileName);
+                
+            }
+            else
+            {
+                throw new Exception("You haven't selecetd any file.");
             }
         }
     }

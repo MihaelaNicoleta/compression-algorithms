@@ -112,6 +112,7 @@
             resources.ApplyResources(this.btnDecode, "btnDecode");
             this.btnDecode.Name = "btnDecode";
             this.btnDecode.UseVisualStyleBackColor = true;
+            this.btnDecode.Click += new System.EventHandler(this.btnDecode_Click);
             // 
             // tbCompressedPath
             // 
