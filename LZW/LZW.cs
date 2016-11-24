@@ -12,6 +12,7 @@ namespace LZW
 
         private Dictionary<int, List<String>> symbolDictionary;
         private Dictionary<int, List<String>> symbolDecompressDictionary;
+        List<String> decompressedResult = new List<String>();
         private int freeze;
         private int index;
         private int noOfSymbols = 4;
@@ -132,6 +133,46 @@ namespace LZW
 
             symbolDecompressDictionary = new Dictionary<int, List<string>>();
 
+            //fillDictionaryFixedPart(symbolDecompressDictionary);
+            
+            String symbol = "";
+
+            List<String> list;
+            list = new List<String>();
+            list.Add("A");
+            symbolDecompressDictionary.Add(0, list);
+            list = new List<String>();
+            list.Add("B");
+            symbolDecompressDictionary.Add(1, list);
+            list = new List<String>();
+            list.Add("C");
+            symbolDecompressDictionary.Add(2, list);
+            list = new List<String>();
+            list.Add("D");
+            symbolDecompressDictionary.Add(3, list);
+
+            int currentPosition = noOfSymbols;
+            int[] headerData = getDataFromHeader(bitReader, nbr);
+            nbr -= 5;
+
+            this.freeze = headerData[0];
+            this.index = headerData[1];
+
+            while(nbr > 0)
+            {
+                
+
+
+
+
+                nbr -= index;
+            }
+
+
+
+
+
+
 
             //generate the decompressed file
             String decompressedFile = "File.ext." + ((freeze == 1) ? "f" : "e") + "l" + index + ".lzw.ext";
@@ -207,5 +248,32 @@ namespace LZW
                       .ToDictionary(pair => pair.Key, pair => pair.Value);
         }
 
+
+        private void writeBufferToFile(List<byte> buffer, BitWriter bitWriter)
+        {
+            foreach (byte buf in buffer)
+            {
+                bitWriter.writeNBits(buf, 8);
+            }
+        }
+
+        private int[] getDataFromHeader(BitReader bitReader, int fileSize)
+        {
+            int freeze;
+            int indexFromHeader;
+
+            int[] headerData = new int[2];
+
+            if (fileSize > 0)
+            {
+                freeze = bitReader.readBit();
+                indexFromHeader = bitReader.readNBits(4);
+
+                headerData[0] = freeze;
+                headerData[1] = indexFromHeader;
+            }
+
+            return headerData;
+        }
     }
 }
