@@ -15,7 +15,7 @@ namespace LZW
         List<String> decompressedResult = new List<String>();
         private int freeze;
         private int index;
-        private int noOfSymbols = 4;
+        private int noOfSymbols = 256;
         private int indexMaxSize;
 
         public LZW() {
@@ -38,24 +38,10 @@ namespace LZW
             FileInfo f = new FileInfo(fileToRead);
             int nbr = 8 * (int)f.Length;
 
-            //fillDictionaryFixedPart(symbolDictionary);
-            
+            fillDictionaryFixedPart(symbolDictionary);            
 
             String symbol = "";
-
             List<String> list;
-            list = new List<String>();
-            list.Add("A");
-            symbolDictionary.Add(0, list);
-            list = new List<String>();
-            list.Add("B");
-            symbolDictionary.Add(1, list);
-            list = new List<String>();
-            list.Add("C");
-            symbolDictionary.Add(2, list);
-            list = new List<String>();
-            list.Add("D");
-            symbolDictionary.Add(3, list);
 
             int currentPosition = symbolDictionary.Count();
             
@@ -78,35 +64,19 @@ namespace LZW
                         if (freeze == 0)
                         {
                             symbolDictionary.Clear();
-                            //fillDictionaryFixedPart(symbolDictionary);
-                           
-                                list = new List<String>();
-                                list.Add("A");
-                                symbolDictionary.Add(0, list);
-                                list = new List<String>();
-                                list.Add("B");
-                                symbolDictionary.Add(1, list);
-                                list = new List<String>();
-                                list.Add("C");
-                                symbolDictionary.Add(2, list);
-                                list = new List<String>();
-                                list.Add("D");
-                                symbolDictionary.Add(3, list);
-                            
+                            fillDictionaryFixedPart(symbolDictionary);                           
                         }
                     }
                     else
                     {
                         list = new List<string>();
-                        list.Add(symbol + charString); // current symbol
-                        list.Add(charString); // last symbol added
+                        list.Add(symbol + charString);
+                        list.Add(symbol); 
                         symbolDictionary.Add(currentPosition, list);
                         symbol = charString;
 
                         currentPosition++;
-                    }
-
-                    
+                    }                    
                 }
                 nbr -= 8;
             }
@@ -130,27 +100,13 @@ namespace LZW
             FileInfo f = new FileInfo(compressedFileToRead);
             int nbr = 8 * (int)f.Length;
 
-
             symbolDecompressDictionary = new Dictionary<int, List<string>>();
 
-            //fillDictionaryFixedPart(symbolDecompressDictionary);
-            
+            fillDictionaryFixedPart(symbolDecompressDictionary);
+
             String symbol = "";
-
             List<String> list;
-            list = new List<String>();
-            list.Add("A");
-            symbolDecompressDictionary.Add(0, list);
-            list = new List<String>();
-            list.Add("B");
-            symbolDecompressDictionary.Add(1, list);
-            list = new List<String>();
-            list.Add("C");
-            symbolDecompressDictionary.Add(2, list);
-            list = new List<String>();
-            list.Add("D");
-            symbolDecompressDictionary.Add(3, list);
-
+                        
             int currentPosition = noOfSymbols;
             int[] headerData = getDataFromHeader(bitReader, nbr);
             nbr -= 5;
@@ -158,29 +114,56 @@ namespace LZW
             this.freeze = headerData[0];
             this.index = headerData[1];
 
-            while(nbr > 0)
+            int characterIndex = bitReader.readNBits(index);
+            var charString = symbolDecompressDictionary[characterIndex][0];
+
+            decompressedResult.Add(charString);
+            symbol = charString;
+            nbr -= index;
+            
+            while(nbr >= index)
             {
-                int characterIndex = bitReader.readNBits(index);
-                var charString = symbolDecompressDictionary[characterIndex][0];
 
-
+                characterIndex = bitReader.readNBits(index);
                 
+                if (characterIndex >= symbolDecompressDictionary.Count)
+                {
+                    charString = symbol + symbol[0];
+                }                    
+                else
+                {
+                    charString = symbolDecompressDictionary[characterIndex][0];
+                }
+
+                decompressedResult.Add(charString);
+
+                if (symbolDictionary.Count > indexMaxSize)
+                {
+                    if (freeze == 0)
+                    {
+                        symbolDictionary.Clear();
+                        fillDictionaryFixedPart(symbolDictionary);
+                    }
+                }
+                else
+                {
+                    list = new List<string>();
+                    list.Add(symbol + charString[0]);
+                    symbolDecompressDictionary.Add(currentPosition, list);
+                    currentPosition++;
+
+                    symbol = charString;
+                }
 
                 nbr -= index;
             }
-
-
-
-
-
-
-
+                        
             //generate the decompressed file
             String decompressedFile = "File.ext." + ((freeze == 1) ? "f" : "e") + "l" + index + ".lzw.ext";
             BitWriter bitWriter = new BitWriter(decompressedFile);
 
-            //writeBufferToFile(decompressBuffer, bitWriter);
-
+            writeDecompressedDataToFile(decompressedResult, bitWriter);
+            bitWriter.cleanUp();
 
             return true;
         }
@@ -213,16 +196,6 @@ namespace LZW
             foreach (KeyValuePair<int, List<String>> symbol in dictionaryFromInput)
             {
                 var element = (symbol.Key != noOfSymbols) ? symbol.Value[1] : symbol.Value[0][0].ToString();
-                //String element;
-                //if (symbol.Key != noOfSymbols)
-                //{
-                //    element = symbol.Value[1];
-                //}
-                //else
-                //{
-                //    symbol.Value[0][0].ToString()
-                //}
-
                 valueIndex = getIndexFromDictionary(symbolDictionary, element);
                 bitWriter.writeNBits(valueIndex, index);                
             }
@@ -258,13 +231,15 @@ namespace LZW
                       .Take(symbolDictionary.Count - noOfSymbols)
                       .ToDictionary(pair => pair.Key, pair => pair.Value);
         }
-
-
-        private void writeBufferToFile(List<byte> buffer, BitWriter bitWriter)
+        
+        private void writeDecompressedDataToFile(List<String> results, BitWriter bitWriter)
         {
-            foreach (byte buf in buffer)
+            foreach (String result in results)
             {
-                bitWriter.writeNBits(buf, 8);
+                for(int i = 0; i < result.Length; i++)
+                {
+                    bitWriter.writeNBits(result[i], 8);
+                }                
             }
         }
 
@@ -283,7 +258,6 @@ namespace LZW
                 headerData[0] = freeze;
                 headerData[1] = indexFromHeader;
             }
-
             return headerData;
         }
     }
