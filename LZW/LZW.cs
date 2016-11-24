@@ -166,8 +166,6 @@ namespace LZW
 
                 
 
-
-
                 nbr -= index;
             }
 
@@ -213,8 +211,18 @@ namespace LZW
             int valueIndex = 0;
 
             foreach (KeyValuePair<int, List<String>> symbol in dictionaryFromInput)
-            {                
-                var element = (symbol.Key != noOfSymbols) ? symbol.Value[1] : symbol.Value[1][0].ToString();
+            {
+                var element = (symbol.Key != noOfSymbols) ? symbol.Value[1] : symbol.Value[0][0].ToString();
+                //String element;
+                //if (symbol.Key != noOfSymbols)
+                //{
+                //    element = symbol.Value[1];
+                //}
+                //else
+                //{
+                //    symbol.Value[0][0].ToString()
+                //}
+
                 valueIndex = getIndexFromDictionary(symbolDictionary, element);
                 bitWriter.writeNBits(valueIndex, index);                
             }
