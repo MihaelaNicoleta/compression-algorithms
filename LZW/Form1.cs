@@ -85,13 +85,11 @@ namespace LZW
                     tbTokens.Text += "\r\nCompression was a great success.\r\n";
                 }
 
-                /*if (chkDisplayTokens.Checked)
+                if (chkDisplayTokens.Checked)
                 {
-                    List<Token> resultTokens = new List<Token>();
-                    resultTokens = coder.getTokens();
-
-                    displayTokens(resultTokens);
-                }*/
+                    Dictionary<int, List<String>> dictionaryFromInput = compresser.getDictionaryElements();
+                    displayTokens(dictionaryFromInput);
+                }
             }
             else
             {
@@ -100,13 +98,15 @@ namespace LZW
 
         }
 
-        /*private void displayTokens(List<Token> tokens)
+        private void displayTokens(Dictionary<int, List<String>> dictionaryElements)
         {
-            foreach (Token token in tokens)
+            List<String> list;
+            foreach (KeyValuePair<int, List<String>> symbol in dictionaryElements)
             {
-                tbTokens.Text += token.toString();
+                var text = "(" + symbol.Key + ", " + symbol.Value[0] + ") \r\n";                 
+                tbTokens.Text += text;
             }
-        } */
+        } 
 
         private void btnDecode_Click(object sender, EventArgs e)
         {

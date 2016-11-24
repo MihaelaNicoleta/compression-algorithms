@@ -11,23 +11,22 @@ namespace LZW
     {
 
         private Dictionary<int, List<String>> symbolDictionary;
+        private Dictionary<int, List<String>> symbolDecompressDictionary;
         private int freeze;
         private int index;
-        private int noOfSymbols = 3;
-        List<int> encodedIndexes;
+        private int noOfSymbols = 4;
+        private int indexMaxSize;
 
         public LZW() {
             symbolDictionary = new Dictionary<int, List<String>>();
-            encodedIndexes = new List<int>();
         }
 
         public LZW(int freeze, int index)
         {
             this.freeze = freeze;
             this.index = index;
-            int limit = (int)Math.Pow(2, index) - 1;
-            symbolDictionary = new Dictionary<int, List<String>>(limit);
-            encodedIndexes = new List<int>();
+            indexMaxSize = (int)Math.Pow(2, index) - 1;
+            symbolDictionary = new Dictionary<int, List<String>>(indexMaxSize);
         }
 
 
@@ -39,10 +38,11 @@ namespace LZW
             int nbr = 8 * (int)f.Length;
 
             //fillDictionaryFixedPart(symbolDictionary);
-            List<String> list;
+            
 
             String symbol = "";
-            
+
+            List<String> list;
             list = new List<String>();
             list.Add("A");
             symbolDictionary.Add(0, list);
@@ -57,7 +57,7 @@ namespace LZW
             symbolDictionary.Add(3, list);
 
             int currentPosition = symbolDictionary.Count();
-
+            
             while (nbr > 0)
             {
                 int character = bitReader.readNBits(8);
@@ -65,19 +65,47 @@ namespace LZW
                 var c = (char)character;
                 var charString = c.ToString();
 
-                if (checkIfValueExists(symbolDictionary, symbol+ charString))
+                int charIndex = getIndexFromDictionary(symbolDictionary, symbol + charString);
+                if ((charIndex != -1) && (charIndex <= indexMaxSize))
                 {
                     symbol = symbol + charString;
                 }
                 else
                 {
-                    list = new List<string>();
-                    list.Add(symbol + charString); //symbol
-                    list.Add(charString); //ultimul adaugat
-                    symbolDictionary.Add(currentPosition, list);
-                    symbol = charString;
+                    if (symbolDictionary.Count > indexMaxSize)
+                    {
+                        if (freeze == 0)
+                        {
+                            symbolDictionary.Clear();
+                            //fillDictionaryFixedPart(symbolDictionary);
+                           
+                                list = new List<String>();
+                                list.Add("A");
+                                symbolDictionary.Add(0, list);
+                                list = new List<String>();
+                                list.Add("B");
+                                symbolDictionary.Add(1, list);
+                                list = new List<String>();
+                                list.Add("C");
+                                symbolDictionary.Add(2, list);
+                                list = new List<String>();
+                                list.Add("D");
+                                symbolDictionary.Add(3, list);
+                            
+                        }
+                    }
+                    else
+                    {
+                        list = new List<string>();
+                        list.Add(symbol + charString); // current symbol
+                        list.Add(charString); // last symbol added
+                        symbolDictionary.Add(currentPosition, list);
+                        symbol = charString;
 
-                    currentPosition++;
+                        currentPosition++;
+                    }
+
+                    
                 }
                 nbr -= 8;
             }
@@ -89,12 +117,29 @@ namespace LZW
 
             writeCompressedFile(symbolDictionary, bitWriter);
 
+            bitWriter.cleanUp();
 
             return true;
         }
 
-        public Boolean decompress(String fileToRead)
+        public Boolean decompress(String compressedFileToRead)
         {
+            BitReader bitReader = new BitReader(compressedFileToRead);
+
+            FileInfo f = new FileInfo(compressedFileToRead);
+            int nbr = 8 * (int)f.Length;
+
+
+            symbolDecompressDictionary = new Dictionary<int, List<string>>();
+
+
+            //generate the decompressed file
+            String decompressedFile = "File.ext." + ((freeze == 1) ? "f" : "e") + "l" + index + ".lzw.ext";
+            BitWriter bitWriter = new BitWriter(decompressedFile);
+
+            //writeBufferToFile(decompressBuffer, bitWriter);
+
+
             return true;
         }
 
@@ -115,27 +160,22 @@ namespace LZW
             }            
         }
 
-        private bool checkIfValueExists(Dictionary<int, List<String>> symbolDictionary, String value)
-        {
-            List<String> list;
-            foreach (KeyValuePair<int, List<String>> symbol in symbolDictionary)
-            {
-                list = symbol.Value;
-
-                if (list[0] == value)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         private void writeCompressedFile(Dictionary<int, List<String>> symbolDictionary, BitWriter bitWriter)
         {
-            writeheader();
+            writeheader(bitWriter);
 
+            Dictionary<int, List<String>> dictionaryFromInput = getDictionaryElements();
 
+            int valueIndex = 0;
+
+            foreach (KeyValuePair<int, List<String>> symbol in dictionaryFromInput)
+            {                
+                var element = (symbol.Key != noOfSymbols) ? symbol.Value[1] : symbol.Value[1][0].ToString();
+                valueIndex = getIndexFromDictionary(symbolDictionary, symbol.Value[1]);
+                bitWriter.writeNBits(valueIndex, index);                
+            }
+
+            bitWriter.writeNBits(0, 7);
         }
 
         private void writeheader(BitWriter bitWriter)
@@ -144,6 +184,28 @@ namespace LZW
             bitWriter.writeNBits(index, 4);
         }
 
+        private int getIndexFromDictionary(Dictionary<int, List<String>> symbolDictionary, String value)
+        {
+            List<String> list;
+            foreach (KeyValuePair<int, List<String>> symbol in symbolDictionary)
+            {
+                list = symbol.Value;
+
+                if (list[0] == value)
+                {
+                    return symbol.Key;
+                }
+            }
+
+            return -1;
+        }
+
+        public Dictionary<int, List<String>> getDictionaryElements()
+        {
+            return symbolDictionary.Skip(noOfSymbols)
+                      .Take(symbolDictionary.Count - noOfSymbols)
+                      .ToDictionary(pair => pair.Key, pair => pair.Value);
+        }
 
     }
 }
