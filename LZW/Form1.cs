@@ -76,7 +76,7 @@ namespace LZW
 
             if(inputFileName != "")
             {
-                var action = (chkDisplayTokens.Checked) ? 1 : 0;
+                int action = (chkDisplayTokens.Checked) ? 1 : 0;
                 compresser = new LZW(action, noBitsForIndex);
                 var ok = compresser.compress(inputFileName);
 
@@ -100,13 +100,13 @@ namespace LZW
 
         }
 
-        private void displayTokens(List<Token> tokens)
+        /*private void displayTokens(List<Token> tokens)
         {
             foreach (Token token in tokens)
             {
                 tbTokens.Text += token.toString();
             }
-        }
+        } */
 
         private void btnDecode_Click(object sender, EventArgs e)
         {
