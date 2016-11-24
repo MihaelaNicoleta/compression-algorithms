@@ -160,8 +160,11 @@ namespace LZW
 
             while(nbr > 0)
             {
-                
+                int characterIndex = bitReader.readNBits(index);
+                var charString = symbolDecompressDictionary[characterIndex][0];
 
+
+                
 
 
 
@@ -212,7 +215,7 @@ namespace LZW
             foreach (KeyValuePair<int, List<String>> symbol in dictionaryFromInput)
             {                
                 var element = (symbol.Key != noOfSymbols) ? symbol.Value[1] : symbol.Value[1][0].ToString();
-                valueIndex = getIndexFromDictionary(symbolDictionary, symbol.Value[1]);
+                valueIndex = getIndexFromDictionary(symbolDictionary, element);
                 bitWriter.writeNBits(valueIndex, index);                
             }
 
