@@ -67,18 +67,24 @@ namespace LZW
                             fillDictionaryFixedPart(symbolDictionary);                           
                         }
                     }
-                    else
-                    {
-                        list = new List<string>();
-                        list.Add(symbol + charString);
-                        list.Add(symbol); 
-                        symbolDictionary.Add(currentPosition, list);
-                        symbol = charString;
-
-                        currentPosition++;
-                    }                    
+                    list = new List<string>();
+                    list.Add(symbol + charString);
+                    list.Add(symbol); 
+                    symbolDictionary.Add(currentPosition, list);
+                    currentPosition++;
+                    
+                    symbol = charString;                  
                 }
+
                 nbr -= 8;
+
+                if(nbr <= 0)
+                {
+                    list = new List<string>();
+                    list.Add(symbol + charString);
+                    list.Add(symbol);
+                    symbolDictionary.Add(currentPosition, list);
+                }
             }
 
             bitReader.cleanUp();
@@ -121,9 +127,8 @@ namespace LZW
             symbol = charString;
             nbr -= index;
             
-            while(nbr >= index)
+            while(nbr >= index + 8)
             {
-
                 characterIndex = bitReader.readNBits(index);
                 
                 if (characterIndex >= symbolDecompressDictionary.Count)
@@ -141,21 +146,18 @@ namespace LZW
                 {
                     if (freeze == 0)
                     {
-                        symbolDictionary.Clear();
-                        fillDictionaryFixedPart(symbolDictionary);
+                        symbolDecompressDictionary.Clear();
+                        fillDictionaryFixedPart(symbolDecompressDictionary);
                     }
                 }
-                else
-                {
-                    list = new List<string>();
-                    list.Add(symbol + charString[0]);
-                    symbolDecompressDictionary.Add(currentPosition, list);
-                    currentPosition++;
-
-                    symbol = charString;
-                }
-
+                list = new List<string>();
+                list.Add(symbol + charString[0]);
+                symbolDecompressDictionary.Add(currentPosition, list);
+                currentPosition++;                    
+               
+                symbol = charString;
                 nbr -= index;
+
             }
                         
             //generate the decompressed file
