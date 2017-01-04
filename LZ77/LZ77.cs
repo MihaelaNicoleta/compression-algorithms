@@ -101,7 +101,7 @@ namespace LZ77
                 }
                 else
                 {
-                    var te = tokenLength;
+                   // var te = tokenLength;
                     token = new Token(tokenOffset, tokenLength, tokenCharacter);
                     tokens.Add(token);
                 }
@@ -146,10 +146,10 @@ namespace LZ77
                    }
                    else
                    {
-                       var aux = currentPosition;
+                       var temporaryPosition = currentPosition;
                        for (int i = 0; i < token.getLength(); i++)
                        {
-                           decompressBuffer.Add(decompressBuffer[aux - token.getOffset() + i - 1]);
+                           decompressBuffer.Add(decompressBuffer[temporaryPosition - token.getOffset() + i - 1]);
                            currentPosition++;
                        }
                        decompressBuffer.Add((byte)token.getCharacter());

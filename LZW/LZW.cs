@@ -133,7 +133,7 @@ namespace LZW
                 
                 if (characterIndex >= symbolDecompressDictionary.Count)
                 {
-                    charString = symbol + symbol[0];
+                    charString = symbol + symbol[0]; 
                 }                    
                 else
                 {

@@ -8,6 +8,7 @@ namespace HuffmanSemiStatic
 {
     class Node
     {
+
         private Node parentNode;
         private Node leftNode;
         private Node rightNode;
