@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnLoad = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLoadEncryptedFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbPath = new System.Windows.Forms.TextBox();
             this.tbDecryptPath = new System.Windows.Forms.TextBox();
@@ -49,6 +49,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tbDDecrypt = new System.Windows.Forms.TextBox();
+            this.tbMessages = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLoad
@@ -60,16 +62,18 @@
             this.btnLoad.TabIndex = 1;
             this.btnLoad.Text = "Load file";
             this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // button1
+            // btnLoadEncryptedFile
             // 
-            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(421, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 32);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Load encrypted file";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLoadEncryptedFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLoadEncryptedFile.Location = new System.Drawing.Point(421, 33);
+            this.btnLoadEncryptedFile.Name = "btnLoadEncryptedFile";
+            this.btnLoadEncryptedFile.Size = new System.Drawing.Size(166, 32);
+            this.btnLoadEncryptedFile.TabIndex = 2;
+            this.btnLoadEncryptedFile.Text = "Load encrypted file";
+            this.btnLoadEncryptedFile.UseVisualStyleBackColor = true;
+            this.btnLoadEncryptedFile.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -160,6 +164,7 @@
             this.btnEncrypt.TabIndex = 12;
             this.btnEncrypt.Text = "Encrypt";
             this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
             // tbKeyEncrypt
             // 
@@ -186,6 +191,7 @@
             this.btnDecrypt.TabIndex = 19;
             this.btnDecrypt.Text = "Decrypt";
             this.btnDecrypt.UseVisualStyleBackColor = true;
+            this.btnDecrypt.Click += new System.EventHandler(this.btnDecrypt_Click);
             // 
             // tbEDecrypt
             // 
@@ -240,11 +246,31 @@
             this.tbDDecrypt.Size = new System.Drawing.Size(215, 22);
             this.tbDDecrypt.TabIndex = 21;
             // 
+            // tbMessages
+            // 
+            this.tbMessages.Location = new System.Drawing.Point(84, 396);
+            this.tbMessages.Multiline = true;
+            this.tbMessages.Name = "tbMessages";
+            this.tbMessages.Size = new System.Drawing.Size(552, 51);
+            this.tbMessages.TabIndex = 22;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label9.Location = new System.Drawing.Point(12, 412);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 17);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Message";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 479);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.tbMessages);
             this.Controls.Add(this.tbDDecrypt);
             this.Controls.Add(this.tbKeyDecrypt);
             this.Controls.Add(this.btnDecrypt);
@@ -264,7 +290,7 @@
             this.Controls.Add(this.tbDecryptPath);
             this.Controls.Add(this.tbPath);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLoadEncryptedFile);
             this.Controls.Add(this.btnLoad);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -276,7 +302,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLoadEncryptedFile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbPath;
         private System.Windows.Forms.TextBox tbDecryptPath;
@@ -296,6 +322,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbDDecrypt;
+        private System.Windows.Forms.TextBox tbMessages;
+        private System.Windows.Forms.Label label9;
     }
 }
 
