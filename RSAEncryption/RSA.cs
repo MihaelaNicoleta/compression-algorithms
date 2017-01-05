@@ -11,7 +11,7 @@ namespace RSAEncryption
     {
         private int keyDimension = 8;
         private int N, E, D;
-        private byte[] encryptSecretKey, decryptKey;
+        private byte[] encryptKey, encryptSecretKey, decryptKey;
 
         /* encrypted data */
         List<byte> result = new List<byte>();
@@ -47,7 +47,7 @@ namespace RSAEncryption
             int nbr = 8 * (int)f.Length;
 
             /* Generate random key */
-            byte[] encryptKey = generateRandomKey();
+            this.encryptKey = generateRandomKey();
 
             /* Generate secret key */
             this.encryptSecretKey = generateSecretKey(encryptKey, N, E);
@@ -94,13 +94,27 @@ namespace RSAEncryption
             nbr -= 2 * 32;
 
             /* get encrypted key from header */
-            var encryptedKeyFromFile = getEncryptedKeyFromHeader(bitReader, nbr);
+            byte[] encryptedKeyFromFile = getEncryptedKeyFromHeader(bitReader, nbr);
             nbr -= keyDimension * 32;
 
+            /* decrypt encrypted key from header */
+            decryptKey = decryptEncryptedKey(encryptedKeyFromFile);
 
+            byte data;
+            int i = 0;
+            int character;
 
+            /* read data from file */
+            while (nbr > 0)
+            {
+                character = bitReader.readNBits(8);
+                data = Convert.ToByte(character ^ decryptKey[i]);
+                result.Add(data);
+                i++;
+                i %= 8;
 
-
+                nbr -= 8;
+            }
 
             //generate the decrypted file
             String decompressedFile = "decrypted_file.decrypted";
@@ -143,7 +157,7 @@ namespace RSAEncryption
 
             for (int i = 0; i < keyDimension; i++)
             {
-                generatedKey[i] = modularExponent(key[i], N, E);
+                generatedKey[i] = modularExponent(key[i], E, N);
             }
             return generatedKey;
         }
@@ -191,8 +205,7 @@ namespace RSAEncryption
         private byte[] getEncryptedKeyFromHeader(BitReader bitReader, int fileSize)
         {
             byte[] encryptedKeyFromFile = new byte[keyDimension];            
-
-            
+                        
             for(int i = 0; i < keyDimension; i++)
             {
                 if (fileSize > 0)
@@ -205,6 +218,17 @@ namespace RSAEncryption
             return encryptedKeyFromFile;
         }
 
+        private byte[] decryptEncryptedKey(byte[] encryptedKey)
+        {
+            byte[] decryptedKey = new byte[keyDimension];
+
+            for (int i = 0; i < keyDimension; i++)
+            {
+                decryptedKey[i] = modularExponent(encryptedKey[i], D, N);
+            }
+            
+            return decryptedKey;
+        }
 
 
 
@@ -221,7 +245,7 @@ namespace RSAEncryption
             String keyText = "";
             for (int i = 0; i < keyDimension; i++)
             {
-                keyText += encryptSecretKey[i].ToString();
+                keyText += encryptKey[i].ToString();
             }
 
             return keyText;
