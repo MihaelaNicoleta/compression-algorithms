@@ -44,7 +44,7 @@ namespace RSAEncryption
         {
             OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.Filter = "All Files (*.*)|*.*";
+            dialog.Filter = "RSA Compressed Files (.rsa)|*.rsa";
             dialog.FilterIndex = 1;
             dialog.Multiselect = false;
 
@@ -60,11 +60,23 @@ namespace RSAEncryption
 
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
-            if (inputFileName != "")
+            int N = Convert.ToInt32(tbNEncrypt.Text.Trim());
+            int E = Convert.ToInt32(tbEEncrypt.Text.Trim());
+            
+    /*
+            if((N < (int)Math.Pow(2, 8)) && (N > (int)Math.Pow(2, 32)))
+            {
+                throw new Exception("Enter a smaller value for N.");
+            }
+    */
+
+            if ((inputFileName != "") && (N > 0) && (E > 0))
             {
                 
-                encryptor = new RSA();
+                encryptor = new RSA(N, E);
                 var ok = encryptor.encrypt(inputFileName);
+
+                tbKeyEncrypt.Text = encryptor.getEncryptKey();
 
                 if (ok == true)
                 {
@@ -80,11 +92,14 @@ namespace RSAEncryption
 
         private void btnDecrypt_Click(object sender, EventArgs e)
         {
-            if (encryptedFileName != "")
+            int D = Convert.ToInt32(tbDDecrypt.Text.Trim());
+            if ((encryptedFileName != "") && (D > 0))
             {
-
-                encryptor = new RSA();
+                encryptor = new RSA(D);
                 var ok = encryptor.decrypt(encryptedFileName);
+                tbNDecrypt.Text = encryptor.getN();
+                tbEDecrypt.Text = encryptor.getE();
+                tbKeyDecrypt.Text = encryptor.getDecryptKey();
 
                 if (ok == true)
                 {

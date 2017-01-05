@@ -72,6 +72,7 @@
             this.btnLoadEncryptedFile.Size = new System.Drawing.Size(166, 32);
             this.btnLoadEncryptedFile.TabIndex = 2;
             this.btnLoadEncryptedFile.Text = "Load encrypted file";
+            this.btnLoadEncryptedFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLoadEncryptedFile.UseVisualStyleBackColor = true;
             this.btnLoadEncryptedFile.Click += new System.EventHandler(this.button1_Click);
             // 
