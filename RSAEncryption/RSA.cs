@@ -88,6 +88,15 @@ namespace RSAEncryption
 
             /* get N and E from header */
             int[] headerData = getNEFromHeader(bitReader, nbr);
+            this.N = headerData[0];
+            this.E = headerData[1];
+
+            nbr -= 2 * 32;
+
+            /* get encrypted key from header */
+            var encryptedKeyFromFile = getEncryptedKeyFromHeader(bitReader, nbr);
+            nbr -= keyDimension * 32;
+
 
 
 
@@ -150,7 +159,7 @@ namespace RSAEncryption
             }
         }
 
-        public void writeEncryptedFile(BitWriter bitWriter)
+        private void writeEncryptedFile(BitWriter bitWriter)
         {
             writeKeys(bitWriter);
 
@@ -160,10 +169,10 @@ namespace RSAEncryption
             }
         }
 
-        public int[] getNEFromHeader(BitReader bitReader, int fileSize)
+        private int[] getNEFromHeader(BitReader bitReader, int fileSize)
         {
-            int NFromHeader = 3;
-            int EFromHeader = 2;
+            int NFromHeader;
+            int EFromHeader;
 
             int[] headerData = new int[2];
 
@@ -177,6 +186,23 @@ namespace RSAEncryption
             }
 
             return headerData;
+        }
+
+        private byte[] getEncryptedKeyFromHeader(BitReader bitReader, int fileSize)
+        {
+            byte[] encryptedKeyFromFile = new byte[keyDimension];            
+
+            
+            for(int i = 0; i < keyDimension; i++)
+            {
+                if (fileSize > 0)
+                {
+                    encryptedKeyFromFile[i] = Convert.ToByte(bitReader.readNBits(32));
+                    fileSize -= 32;
+                }
+            }
+            
+            return encryptedKeyFromFile;
         }
 
 

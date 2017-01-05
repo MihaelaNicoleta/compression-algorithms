@@ -103,7 +103,7 @@ namespace RSAEncryption
 
                 if (ok == true)
                 {
-                    tbMessages.Text += "\r\nEncryption was a great success.\r\n";
+                    tbMessages.Text += "\r\nDecryption was a great success.\r\n";
                 }
 
             }
