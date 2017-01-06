@@ -11,23 +11,25 @@ namespace RSAEncryption
     {
         private int keyDimension = 8;
         private int N, E, D;
-        private byte[] encryptKey, encryptSecretKey, decryptKey;
+        private int[] encryptKey, encryptSecretKey, decryptKey;
 
         /* encrypted data */
-        List<byte> result = new List<byte>();
+        List<int> result = new List<int>();
+
+        String text = "";
 
         public RSA()
         {
-            this.encryptSecretKey = new byte[keyDimension];
-            this.decryptKey = new byte[keyDimension];
+            this.encryptSecretKey = new int[keyDimension];
+            this.decryptKey = new int[keyDimension];
         }
 
         public RSA(int D)
         {
             this.D = D;
 
-            this.encryptSecretKey = new byte[keyDimension];
-            this.decryptKey = new byte[keyDimension];
+            this.encryptSecretKey = new int[keyDimension];
+            this.decryptKey = new int[keyDimension];
         }
 
         public RSA(int N, int E)
@@ -35,8 +37,8 @@ namespace RSAEncryption
             this.N = N;
             this.E = E;
 
-            this.encryptSecretKey = new byte[keyDimension];
-            this.decryptKey = new byte[keyDimension];
+            this.encryptSecretKey = new int[keyDimension];
+            this.decryptKey = new int[keyDimension];
         }
 
         public Boolean encrypt(String fileToRead)
@@ -52,7 +54,6 @@ namespace RSAEncryption
             /* Generate secret key */
             this.encryptSecretKey = generateSecretKey(encryptKey, N, E);
 
-            byte data;
             int i = 0;
             int character;
 
@@ -60,8 +61,7 @@ namespace RSAEncryption
             while (nbr > 0)
             {
                 character = bitReader.readNBits(8);
-                data = Convert.ToByte(character ^ encryptKey[i]);
-                result.Add(data);
+                result.Add(character ^ encryptKey[i]);
                 i++;
                 i %= 8;
 
@@ -94,13 +94,12 @@ namespace RSAEncryption
             nbr -= 2 * 32;
 
             /* get encrypted key from header */
-            byte[] encryptedKeyFromFile = getEncryptedKeyFromHeader(bitReader, nbr);
+            int[] encryptedKeyFromFile = getEncryptedKeyFromHeader(bitReader, nbr);
             nbr -= keyDimension * 32;
 
             /* decrypt encrypted key from header */
             decryptKey = decryptEncryptedKey(encryptedKeyFromFile);
 
-            byte data;
             int i = 0;
             int character;
 
@@ -108,8 +107,7 @@ namespace RSAEncryption
             while (nbr > 0)
             {
                 character = bitReader.readNBits(8);
-                data = Convert.ToByte(character ^ decryptKey[i]);
-                result.Add(data);
+                result.Add(character ^ decryptKey[i]);
                 i++;
                 i %= 8;
 
@@ -120,14 +118,14 @@ namespace RSAEncryption
             String decompressedFile = "decrypted_file.decrypted";
             BitWriter bitWriter = new BitWriter(decompressedFile);
 
-            //writeDecryptedDataToFile(bitWriter);
+            writeDecryptedDataToFile(bitWriter);
             bitWriter.cleanUp();
 
             return true;
 
         }
 
-        private byte modularExponent(int B, int X, int N)
+        private int modularExponent(int B, int X, int N)
         {
             int R = 1;
             for (int k = 1; k <= X; k++)
@@ -135,25 +133,25 @@ namespace RSAEncryption
                 R *= B;
                 R %= N;
             }
-            return Convert.ToByte(R);
+            return R;
         }
 
-        private byte[] generateRandomKey()
+        private int[] generateRandomKey()
         {
-            byte[] generatedKey = new byte[keyDimension];
+            int[] generatedKey = new int[keyDimension];
             Random random = new Random();
-
+            
             for (int i = 0; i < keyDimension; i++)
             {
-                generatedKey[i] = Convert.ToByte(random.Next(keyDimension * keyDimension));
+                generatedKey[i] = random.Next(keyDimension * keyDimension);
             }
-
+            
             return generatedKey;
         }
         
-        private byte[] generateSecretKey(byte[] key, int N, int E)
+        private int[] generateSecretKey(int[] key, int N, int E)
         {
-            byte[] generatedKey = new byte[keyDimension];
+            int[] generatedKey = new int[keyDimension];
 
             for (int i = 0; i < keyDimension; i++)
             {
@@ -177,7 +175,7 @@ namespace RSAEncryption
         {
             writeKeys(bitWriter);
 
-            foreach(byte data in result)
+            foreach(int data in result)
             {
                 bitWriter.writeNBits(data, 8);
             }
@@ -202,15 +200,15 @@ namespace RSAEncryption
             return headerData;
         }
 
-        private byte[] getEncryptedKeyFromHeader(BitReader bitReader, int fileSize)
+        private int[] getEncryptedKeyFromHeader(BitReader bitReader, int fileSize)
         {
-            byte[] encryptedKeyFromFile = new byte[keyDimension];            
+            int[] encryptedKeyFromFile = new int[keyDimension];            
                         
             for(int i = 0; i < keyDimension; i++)
             {
                 if (fileSize > 0)
                 {
-                    encryptedKeyFromFile[i] = Convert.ToByte(bitReader.readNBits(32));
+                    encryptedKeyFromFile[i] = bitReader.readNBits(32);
                     fileSize -= 32;
                 }
             }
@@ -218,9 +216,9 @@ namespace RSAEncryption
             return encryptedKeyFromFile;
         }
 
-        private byte[] decryptEncryptedKey(byte[] encryptedKey)
+        private int[] decryptEncryptedKey(int[] encryptedKey)
         {
-            byte[] decryptedKey = new byte[keyDimension];
+            int[] decryptedKey = new int[keyDimension];
 
             for (int i = 0; i < keyDimension; i++)
             {
@@ -230,15 +228,16 @@ namespace RSAEncryption
             return decryptedKey;
         }
 
+        private void writeDecryptedDataToFile(BitWriter bitWriter)
+        {
+            foreach (int data in result)
+            {
+                text += Convert.ToString(data);
+                bitWriter.writeNBits(data, 8);
+            }
+        }
 
-
-
-
-
-
-
-
-
+        
         /* functions needed to display data in form */
         public String getEncryptKey()
         {
