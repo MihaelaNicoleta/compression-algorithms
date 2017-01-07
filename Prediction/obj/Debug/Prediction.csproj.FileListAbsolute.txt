@@ -1,2 +1,10 @@
 F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\Prediction\bin\Debug\Prediction.exe.config
 F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\bin\Debug\Prediction.exe.config
+F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\bin\Debug\Prediction.exe
+F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\bin\Debug\Prediction.pdb
+F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\obj\Debug\Prediction.csprojResolveAssemblyReference.cache
+F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\obj\Debug\Prediction.Form1.resources
+F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\obj\Debug\Prediction.Properties.Resources.resources
+F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\obj\Debug\Prediction.csproj.GenerateResource.Cache
+F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\obj\Debug\Prediction.exe
+F:\Faculta\An 4\Criptare\LAB\probleme\compression\Prediction\obj\Debug\Prediction.pdb

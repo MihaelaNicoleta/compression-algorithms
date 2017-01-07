@@ -28,157 +28,169 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cb128 = new System.Windows.Forms.CheckBox();
-            this.cbA = new System.Windows.Forms.CheckBox();
-            this.cbB = new System.Windows.Forms.CheckBox();
-            this.cbC = new System.Windows.Forms.CheckBox();
-            this.cbABC = new System.Windows.Forms.CheckBox();
-            this.cbABC2 = new System.Windows.Forms.CheckBox();
-            this.cbBAC = new System.Windows.Forms.CheckBox();
-            this.cbAB = new System.Windows.Forms.CheckBox();
-            this.cbJpegLS = new System.Windows.Forms.CheckBox();
-            this.cbOriginal = new System.Windows.Forms.CheckBox();
-            this.cbError = new System.Windows.Forms.CheckBox();
-            this.cbDecoded = new System.Windows.Forms.CheckBox();
+            this.rb128 = new System.Windows.Forms.RadioButton();
+            this.rbA = new System.Windows.Forms.RadioButton();
+            this.rbB = new System.Windows.Forms.RadioButton();
+            this.rbC = new System.Windows.Forms.RadioButton();
+            this.rbABC = new System.Windows.Forms.RadioButton();
+            this.rbABC2 = new System.Windows.Forms.RadioButton();
+            this.rbBAC = new System.Windows.Forms.RadioButton();
+            this.rbAB = new System.Windows.Forms.RadioButton();
+            this.rbJpegLS = new System.Windows.Forms.RadioButton();
+            this.rbOriginal = new System.Windows.Forms.RadioButton();
+            this.rbError = new System.Windows.Forms.RadioButton();
+            this.rbDecoded = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
-            // cb128
+            // rb128
             // 
-            this.cb128.AutoSize = true;
-            this.cb128.Location = new System.Drawing.Point(27, 237);
-            this.cb128.Name = "cb128";
-            this.cb128.Size = new System.Drawing.Size(54, 21);
-            this.cb128.TabIndex = 0;
-            this.cb128.Text = "128";
-            this.cb128.UseVisualStyleBackColor = true;
+            this.rb128.AutoSize = true;
+            this.rb128.Location = new System.Drawing.Point(32, 269);
+            this.rb128.Name = "rb128";
+            this.rb128.Size = new System.Drawing.Size(53, 21);
+            this.rb128.TabIndex = 12;
+            this.rb128.TabStop = true;
+            this.rb128.Text = "128";
+            this.rb128.UseVisualStyleBackColor = true;
             // 
-            // cbA
+            // rbA
             // 
-            this.cbA.AutoSize = true;
-            this.cbA.Location = new System.Drawing.Point(27, 264);
-            this.cbA.Name = "cbA";
-            this.cbA.Size = new System.Drawing.Size(39, 21);
-            this.cbA.TabIndex = 1;
-            this.cbA.Text = "A";
-            this.cbA.UseVisualStyleBackColor = true;
+            this.rbA.AutoSize = true;
+            this.rbA.Location = new System.Drawing.Point(32, 296);
+            this.rbA.Name = "rbA";
+            this.rbA.Size = new System.Drawing.Size(38, 21);
+            this.rbA.TabIndex = 13;
+            this.rbA.TabStop = true;
+            this.rbA.Text = "A";
+            this.rbA.UseVisualStyleBackColor = true;
             // 
-            // cbB
+            // rbB
             // 
-            this.cbB.AutoSize = true;
-            this.cbB.Location = new System.Drawing.Point(27, 291);
-            this.cbB.Name = "cbB";
-            this.cbB.Size = new System.Drawing.Size(39, 21);
-            this.cbB.TabIndex = 2;
-            this.cbB.Text = "B";
-            this.cbB.UseVisualStyleBackColor = true;
+            this.rbB.AutoSize = true;
+            this.rbB.Location = new System.Drawing.Point(32, 323);
+            this.rbB.Name = "rbB";
+            this.rbB.Size = new System.Drawing.Size(38, 21);
+            this.rbB.TabIndex = 14;
+            this.rbB.TabStop = true;
+            this.rbB.Text = "B";
+            this.rbB.UseVisualStyleBackColor = true;
             // 
-            // cbC
+            // rbC
             // 
-            this.cbC.AutoSize = true;
-            this.cbC.Location = new System.Drawing.Point(27, 318);
-            this.cbC.Name = "cbC";
-            this.cbC.Size = new System.Drawing.Size(39, 21);
-            this.cbC.TabIndex = 3;
-            this.cbC.Text = "C";
-            this.cbC.UseVisualStyleBackColor = true;
+            this.rbC.AutoSize = true;
+            this.rbC.Location = new System.Drawing.Point(32, 350);
+            this.rbC.Name = "rbC";
+            this.rbC.Size = new System.Drawing.Size(38, 21);
+            this.rbC.TabIndex = 15;
+            this.rbC.TabStop = true;
+            this.rbC.Text = "C";
+            this.rbC.UseVisualStyleBackColor = true;
             // 
-            // cbABC
+            // rbABC
             // 
-            this.cbABC.AutoSize = true;
-            this.cbABC.Location = new System.Drawing.Point(27, 345);
-            this.cbABC.Name = "cbABC";
-            this.cbABC.Size = new System.Drawing.Size(73, 21);
-            this.cbABC.TabIndex = 4;
-            this.cbABC.Text = "A+B+C";
-            this.cbABC.UseVisualStyleBackColor = true;
+            this.rbABC.AutoSize = true;
+            this.rbABC.Location = new System.Drawing.Point(32, 377);
+            this.rbABC.Name = "rbABC";
+            this.rbABC.Size = new System.Drawing.Size(72, 21);
+            this.rbABC.TabIndex = 16;
+            this.rbABC.TabStop = true;
+            this.rbABC.Text = "A+B+C";
+            this.rbABC.UseVisualStyleBackColor = true;
             // 
-            // cbABC2
+            // rbABC2
             // 
-            this.cbABC2.AutoSize = true;
-            this.cbABC2.Location = new System.Drawing.Point(27, 372);
-            this.cbABC2.Name = "cbABC2";
-            this.cbABC2.Size = new System.Drawing.Size(92, 21);
-            this.cbABC2.TabIndex = 5;
-            this.cbABC2.Text = "A+(B-C)/2";
-            this.cbABC2.UseVisualStyleBackColor = true;
+            this.rbABC2.AutoSize = true;
+            this.rbABC2.Location = new System.Drawing.Point(32, 404);
+            this.rbABC2.Name = "rbABC2";
+            this.rbABC2.Size = new System.Drawing.Size(91, 21);
+            this.rbABC2.TabIndex = 17;
+            this.rbABC2.TabStop = true;
+            this.rbABC2.Text = "A+(B-C)/2";
+            this.rbABC2.UseVisualStyleBackColor = true;
             // 
-            // cbBAC
+            // rbBAC
             // 
-            this.cbBAC.AutoSize = true;
-            this.cbBAC.Location = new System.Drawing.Point(27, 399);
-            this.cbBAC.Name = "cbBAC";
-            this.cbBAC.Size = new System.Drawing.Size(92, 21);
-            this.cbBAC.TabIndex = 6;
-            this.cbBAC.Text = "B+(A-C)/2";
-            this.cbBAC.UseVisualStyleBackColor = true;
+            this.rbBAC.AutoSize = true;
+            this.rbBAC.Location = new System.Drawing.Point(32, 431);
+            this.rbBAC.Name = "rbBAC";
+            this.rbBAC.Size = new System.Drawing.Size(91, 21);
+            this.rbBAC.TabIndex = 18;
+            this.rbBAC.TabStop = true;
+            this.rbBAC.Text = "B+(A-C)/2";
+            this.rbBAC.UseVisualStyleBackColor = true;
             // 
-            // cbAB
+            // rbAB
             // 
-            this.cbAB.AutoSize = true;
-            this.cbAB.Location = new System.Drawing.Point(27, 426);
-            this.cbAB.Name = "cbAB";
-            this.cbAB.Size = new System.Drawing.Size(78, 21);
-            this.cbAB.TabIndex = 7;
-            this.cbAB.Text = "(A+B)/2";
-            this.cbAB.UseVisualStyleBackColor = true;
+            this.rbAB.AutoSize = true;
+            this.rbAB.Location = new System.Drawing.Point(32, 458);
+            this.rbAB.Name = "rbAB";
+            this.rbAB.Size = new System.Drawing.Size(77, 21);
+            this.rbAB.TabIndex = 19;
+            this.rbAB.TabStop = true;
+            this.rbAB.Text = "(A+B)/2";
+            this.rbAB.UseVisualStyleBackColor = true;
             // 
-            // cbJpegLS
+            // rbJpegLS
             // 
-            this.cbJpegLS.AutoSize = true;
-            this.cbJpegLS.Location = new System.Drawing.Point(27, 453);
-            this.cbJpegLS.Name = "cbJpegLS";
-            this.cbJpegLS.Size = new System.Drawing.Size(74, 21);
-            this.cbJpegLS.TabIndex = 8;
-            this.cbJpegLS.Text = "jpegLS";
-            this.cbJpegLS.UseVisualStyleBackColor = true;
+            this.rbJpegLS.AutoSize = true;
+            this.rbJpegLS.Location = new System.Drawing.Point(32, 485);
+            this.rbJpegLS.Name = "rbJpegLS";
+            this.rbJpegLS.Size = new System.Drawing.Size(73, 21);
+            this.rbJpegLS.TabIndex = 20;
+            this.rbJpegLS.TabStop = true;
+            this.rbJpegLS.Text = "jpegLS";
+            this.rbJpegLS.UseVisualStyleBackColor = true;
             // 
-            // cbOriginal
+            // rbOriginal
             // 
-            this.cbOriginal.AutoSize = true;
-            this.cbOriginal.Location = new System.Drawing.Point(262, 291);
-            this.cbOriginal.Name = "cbOriginal";
-            this.cbOriginal.Size = new System.Drawing.Size(79, 21);
-            this.cbOriginal.TabIndex = 9;
-            this.cbOriginal.Text = "Original";
-            this.cbOriginal.UseVisualStyleBackColor = true;
+            this.rbOriginal.AutoSize = true;
+            this.rbOriginal.Location = new System.Drawing.Point(222, 269);
+            this.rbOriginal.Name = "rbOriginal";
+            this.rbOriginal.Size = new System.Drawing.Size(78, 21);
+            this.rbOriginal.TabIndex = 21;
+            this.rbOriginal.TabStop = true;
+            this.rbOriginal.Text = "Original";
+            this.rbOriginal.UseVisualStyleBackColor = true;
             // 
-            // cbError
+            // rbError
             // 
-            this.cbError.AutoSize = true;
-            this.cbError.Location = new System.Drawing.Point(262, 318);
-            this.cbError.Name = "cbError";
-            this.cbError.Size = new System.Drawing.Size(128, 21);
-            this.cbError.TabIndex = 10;
-            this.cbError.Text = "Error prediction";
-            this.cbError.UseVisualStyleBackColor = true;
+            this.rbError.AutoSize = true;
+            this.rbError.Location = new System.Drawing.Point(222, 296);
+            this.rbError.Name = "rbError";
+            this.rbError.Size = new System.Drawing.Size(127, 21);
+            this.rbError.TabIndex = 22;
+            this.rbError.TabStop = true;
+            this.rbError.Text = "Error prediction";
+            this.rbError.UseVisualStyleBackColor = true;
             // 
-            // cbDecoded
+            // rbDecoded
             // 
-            this.cbDecoded.AutoSize = true;
-            this.cbDecoded.Location = new System.Drawing.Point(262, 345);
-            this.cbDecoded.Name = "cbDecoded";
-            this.cbDecoded.Size = new System.Drawing.Size(87, 21);
-            this.cbDecoded.TabIndex = 11;
-            this.cbDecoded.Text = "Decoded";
-            this.cbDecoded.UseVisualStyleBackColor = true;
+            this.rbDecoded.AutoSize = true;
+            this.rbDecoded.Location = new System.Drawing.Point(222, 323);
+            this.rbDecoded.Name = "rbDecoded";
+            this.rbDecoded.Size = new System.Drawing.Size(86, 21);
+            this.rbDecoded.TabIndex = 23;
+            this.rbDecoded.TabStop = true;
+            this.rbDecoded.Text = "Decoded";
+            this.rbDecoded.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1344, 530);
-            this.Controls.Add(this.cbDecoded);
-            this.Controls.Add(this.cbError);
-            this.Controls.Add(this.cbOriginal);
-            this.Controls.Add(this.cbJpegLS);
-            this.Controls.Add(this.cbAB);
-            this.Controls.Add(this.cbBAC);
-            this.Controls.Add(this.cbABC2);
-            this.Controls.Add(this.cbABC);
-            this.Controls.Add(this.cbC);
-            this.Controls.Add(this.cbB);
-            this.Controls.Add(this.cbA);
-            this.Controls.Add(this.cb128);
+            this.Controls.Add(this.rbDecoded);
+            this.Controls.Add(this.rbError);
+            this.Controls.Add(this.rbOriginal);
+            this.Controls.Add(this.rbJpegLS);
+            this.Controls.Add(this.rbAB);
+            this.Controls.Add(this.rbBAC);
+            this.Controls.Add(this.rbABC2);
+            this.Controls.Add(this.rbABC);
+            this.Controls.Add(this.rbC);
+            this.Controls.Add(this.rbB);
+            this.Controls.Add(this.rbA);
+            this.Controls.Add(this.rb128);
             this.Name = "Form1";
             this.Text = "Prediction";
             this.ResumeLayout(false);
@@ -187,19 +199,18 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckBox cb128;
-        private System.Windows.Forms.CheckBox cbA;
-        private System.Windows.Forms.CheckBox cbB;
-        private System.Windows.Forms.CheckBox cbC;
-        private System.Windows.Forms.CheckBox cbABC;
-        private System.Windows.Forms.CheckBox cbABC2;
-        private System.Windows.Forms.CheckBox cbBAC;
-        private System.Windows.Forms.CheckBox cbAB;
-        private System.Windows.Forms.CheckBox cbJpegLS;
-        private System.Windows.Forms.CheckBox cbOriginal;
-        private System.Windows.Forms.CheckBox cbError;
-        private System.Windows.Forms.CheckBox cbDecoded;
+        private System.Windows.Forms.RadioButton rb128;
+        private System.Windows.Forms.RadioButton rbA;
+        private System.Windows.Forms.RadioButton rbB;
+        private System.Windows.Forms.RadioButton rbC;
+        private System.Windows.Forms.RadioButton rbABC;
+        private System.Windows.Forms.RadioButton rbABC2;
+        private System.Windows.Forms.RadioButton rbBAC;
+        private System.Windows.Forms.RadioButton rbAB;
+        private System.Windows.Forms.RadioButton rbJpegLS;
+        private System.Windows.Forms.RadioButton rbOriginal;
+        private System.Windows.Forms.RadioButton rbError;
+        private System.Windows.Forms.RadioButton rbDecoded;
     }
 }
 
