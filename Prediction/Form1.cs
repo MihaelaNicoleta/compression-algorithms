@@ -16,5 +16,45 @@ namespace Prediction
         {
             InitializeComponent();
         }
+
+        private void btnLoadImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPredict_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnErrorMatrix_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLoadEncoded_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDecode_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveDecoded_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnHistogram_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

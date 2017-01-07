@@ -17,7 +17,7 @@ namespace Prediction
 
         public Prediction(int predictionType)
         {
-
+            this.predictionType = predictionType;
         }
 
         public bool compress()

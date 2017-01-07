@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.rb128 = new System.Windows.Forms.RadioButton();
             this.rbA = new System.Windows.Forms.RadioButton();
             this.rbB = new System.Windows.Forms.RadioButton();
@@ -209,6 +209,7 @@
             this.btnLoadImage.TabIndex = 24;
             this.btnLoadImage.Text = "Load image";
             this.btnLoadImage.UseVisualStyleBackColor = true;
+            this.btnLoadImage.Click += new System.EventHandler(this.btnLoadImage_Click);
             // 
             // btnPredict
             // 
@@ -218,6 +219,7 @@
             this.btnPredict.TabIndex = 25;
             this.btnPredict.Text = "Predict";
             this.btnPredict.UseVisualStyleBackColor = true;
+            this.btnPredict.Click += new System.EventHandler(this.btnPredict_Click);
             // 
             // btnStore
             // 
@@ -227,6 +229,7 @@
             this.btnStore.TabIndex = 26;
             this.btnStore.Text = "Store";
             this.btnStore.UseVisualStyleBackColor = true;
+            this.btnStore.Click += new System.EventHandler(this.btnStore_Click);
             // 
             // btnErrorMatrix
             // 
@@ -236,6 +239,7 @@
             this.btnErrorMatrix.TabIndex = 27;
             this.btnErrorMatrix.Text = "Show error matrix";
             this.btnErrorMatrix.UseVisualStyleBackColor = true;
+            this.btnErrorMatrix.Click += new System.EventHandler(this.btnErrorMatrix_Click);
             // 
             // btnLoadEncoded
             // 
@@ -245,6 +249,7 @@
             this.btnLoadEncoded.TabIndex = 28;
             this.btnLoadEncoded.Text = "Load encoded";
             this.btnLoadEncoded.UseVisualStyleBackColor = true;
+            this.btnLoadEncoded.Click += new System.EventHandler(this.btnLoadEncoded_Click);
             // 
             // btnDecode
             // 
@@ -254,6 +259,7 @@
             this.btnDecode.TabIndex = 29;
             this.btnDecode.Text = "Decode";
             this.btnDecode.UseVisualStyleBackColor = true;
+            this.btnDecode.Click += new System.EventHandler(this.btnDecode_Click);
             // 
             // btnSaveDecoded
             // 
@@ -263,6 +269,7 @@
             this.btnSaveDecoded.TabIndex = 30;
             this.btnSaveDecoded.Text = "Save decoded";
             this.btnSaveDecoded.UseVisualStyleBackColor = true;
+            this.btnSaveDecoded.Click += new System.EventHandler(this.btnSaveDecoded_Click);
             // 
             // btnHistogram
             // 
@@ -272,19 +279,20 @@
             this.btnHistogram.TabIndex = 31;
             this.btnHistogram.Text = "Show histogram";
             this.btnHistogram.UseVisualStyleBackColor = true;
+            this.btnHistogram.Click += new System.EventHandler(this.btnHistogram_Click);
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea9.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chart1.Legends.Add(legend9);
             this.chart1.Location = new System.Drawing.Point(422, 274);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chart1.Series.Add(series9);
             this.chart1.Size = new System.Drawing.Size(673, 231);
             this.chart1.TabIndex = 32;
             this.chart1.Text = "chart1";
