@@ -55,16 +55,24 @@
             this.pbDecoded = new System.Windows.Forms.PictureBox();
             this.pbError = new System.Windows.Forms.PictureBox();
             this.pbOriginal = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.nudErrormatrix = new System.Windows.Forms.NumericUpDown();
+            this.nudHistogram = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudErrormatrix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHistogram)).BeginInit();
             this.SuspendLayout();
             // 
             // rb128
             // 
             this.rb128.AutoSize = true;
-            this.rb128.Location = new System.Drawing.Point(32, 269);
+            this.rb128.Location = new System.Drawing.Point(17, 26);
             this.rb128.Name = "rb128";
             this.rb128.Size = new System.Drawing.Size(53, 21);
             this.rb128.TabIndex = 12;
@@ -75,7 +83,7 @@
             // rbA
             // 
             this.rbA.AutoSize = true;
-            this.rbA.Location = new System.Drawing.Point(32, 296);
+            this.rbA.Location = new System.Drawing.Point(17, 53);
             this.rbA.Name = "rbA";
             this.rbA.Size = new System.Drawing.Size(38, 21);
             this.rbA.TabIndex = 13;
@@ -86,7 +94,7 @@
             // rbB
             // 
             this.rbB.AutoSize = true;
-            this.rbB.Location = new System.Drawing.Point(32, 323);
+            this.rbB.Location = new System.Drawing.Point(17, 80);
             this.rbB.Name = "rbB";
             this.rbB.Size = new System.Drawing.Size(38, 21);
             this.rbB.TabIndex = 14;
@@ -97,7 +105,7 @@
             // rbC
             // 
             this.rbC.AutoSize = true;
-            this.rbC.Location = new System.Drawing.Point(32, 350);
+            this.rbC.Location = new System.Drawing.Point(17, 107);
             this.rbC.Name = "rbC";
             this.rbC.Size = new System.Drawing.Size(38, 21);
             this.rbC.TabIndex = 15;
@@ -108,7 +116,7 @@
             // rbABC
             // 
             this.rbABC.AutoSize = true;
-            this.rbABC.Location = new System.Drawing.Point(32, 377);
+            this.rbABC.Location = new System.Drawing.Point(17, 134);
             this.rbABC.Name = "rbABC";
             this.rbABC.Size = new System.Drawing.Size(72, 21);
             this.rbABC.TabIndex = 16;
@@ -119,7 +127,7 @@
             // rbABC2
             // 
             this.rbABC2.AutoSize = true;
-            this.rbABC2.Location = new System.Drawing.Point(32, 404);
+            this.rbABC2.Location = new System.Drawing.Point(17, 161);
             this.rbABC2.Name = "rbABC2";
             this.rbABC2.Size = new System.Drawing.Size(91, 21);
             this.rbABC2.TabIndex = 17;
@@ -130,7 +138,7 @@
             // rbBAC
             // 
             this.rbBAC.AutoSize = true;
-            this.rbBAC.Location = new System.Drawing.Point(32, 431);
+            this.rbBAC.Location = new System.Drawing.Point(17, 188);
             this.rbBAC.Name = "rbBAC";
             this.rbBAC.Size = new System.Drawing.Size(91, 21);
             this.rbBAC.TabIndex = 18;
@@ -141,7 +149,7 @@
             // rbAB
             // 
             this.rbAB.AutoSize = true;
-            this.rbAB.Location = new System.Drawing.Point(32, 458);
+            this.rbAB.Location = new System.Drawing.Point(17, 215);
             this.rbAB.Name = "rbAB";
             this.rbAB.Size = new System.Drawing.Size(77, 21);
             this.rbAB.TabIndex = 19;
@@ -152,7 +160,7 @@
             // rbJpegLS
             // 
             this.rbJpegLS.AutoSize = true;
-            this.rbJpegLS.Location = new System.Drawing.Point(32, 485);
+            this.rbJpegLS.Location = new System.Drawing.Point(17, 242);
             this.rbJpegLS.Name = "rbJpegLS";
             this.rbJpegLS.Size = new System.Drawing.Size(73, 21);
             this.rbJpegLS.TabIndex = 20;
@@ -163,7 +171,7 @@
             // rbOriginal
             // 
             this.rbOriginal.AutoSize = true;
-            this.rbOriginal.Location = new System.Drawing.Point(222, 269);
+            this.rbOriginal.Location = new System.Drawing.Point(17, 27);
             this.rbOriginal.Name = "rbOriginal";
             this.rbOriginal.Size = new System.Drawing.Size(78, 21);
             this.rbOriginal.TabIndex = 21;
@@ -174,7 +182,7 @@
             // rbError
             // 
             this.rbError.AutoSize = true;
-            this.rbError.Location = new System.Drawing.Point(222, 296);
+            this.rbError.Location = new System.Drawing.Point(17, 54);
             this.rbError.Name = "rbError";
             this.rbError.Size = new System.Drawing.Size(127, 21);
             this.rbError.TabIndex = 22;
@@ -185,7 +193,7 @@
             // rbDecoded
             // 
             this.rbDecoded.AutoSize = true;
-            this.rbDecoded.Location = new System.Drawing.Point(222, 323);
+            this.rbDecoded.Location = new System.Drawing.Point(17, 81);
             this.rbDecoded.Name = "rbDecoded";
             this.rbDecoded.Size = new System.Drawing.Size(86, 21);
             this.rbDecoded.TabIndex = 23;
@@ -258,7 +266,7 @@
             // 
             // btnHistogram
             // 
-            this.btnHistogram.Location = new System.Drawing.Point(225, 359);
+            this.btnHistogram.Location = new System.Drawing.Point(17, 156);
             this.btnHistogram.Name = "btnHistogram";
             this.btnHistogram.Size = new System.Drawing.Size(124, 66);
             this.btnHistogram.TabIndex = 31;
@@ -305,16 +313,64 @@
             this.pbOriginal.TabIndex = 35;
             this.pbOriginal.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.nudHistogram);
+            this.groupBox1.Controls.Add(this.btnHistogram);
+            this.groupBox1.Controls.Add(this.rbDecoded);
+            this.groupBox1.Controls.Add(this.rbError);
+            this.groupBox1.Controls.Add(this.rbOriginal);
+            this.groupBox1.Location = new System.Drawing.Point(212, 296);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(168, 229);
+            this.groupBox1.TabIndex = 36;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Histogram";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rbJpegLS);
+            this.groupBox2.Controls.Add(this.rbAB);
+            this.groupBox2.Controls.Add(this.rbBAC);
+            this.groupBox2.Controls.Add(this.rbABC2);
+            this.groupBox2.Controls.Add(this.rbABC);
+            this.groupBox2.Controls.Add(this.rbC);
+            this.groupBox2.Controls.Add(this.rbB);
+            this.groupBox2.Controls.Add(this.rbA);
+            this.groupBox2.Controls.Add(this.rb128);
+            this.groupBox2.Location = new System.Drawing.Point(15, 243);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(154, 275);
+            this.groupBox2.TabIndex = 37;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Prediction type";
+            // 
+            // nudErrormatrix
+            // 
+            this.nudErrormatrix.Location = new System.Drawing.Point(367, 199);
+            this.nudErrormatrix.Name = "nudErrormatrix";
+            this.nudErrormatrix.Size = new System.Drawing.Size(70, 22);
+            this.nudErrormatrix.TabIndex = 38;
+            // 
+            // nudHistogram
+            // 
+            this.nudHistogram.Location = new System.Drawing.Point(17, 118);
+            this.nudHistogram.Name = "nudHistogram";
+            this.nudHistogram.Size = new System.Drawing.Size(70, 22);
+            this.nudHistogram.TabIndex = 40;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1142, 530);
+            this.Controls.Add(this.nudErrormatrix);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pbOriginal);
             this.Controls.Add(this.pbError);
             this.Controls.Add(this.pbDecoded);
             this.Controls.Add(this.chart1);
-            this.Controls.Add(this.btnHistogram);
             this.Controls.Add(this.btnSaveDecoded);
             this.Controls.Add(this.btnDecode);
             this.Controls.Add(this.btnLoadEncoded);
@@ -322,26 +378,19 @@
             this.Controls.Add(this.btnStore);
             this.Controls.Add(this.btnPredict);
             this.Controls.Add(this.btnLoadImage);
-            this.Controls.Add(this.rbDecoded);
-            this.Controls.Add(this.rbError);
-            this.Controls.Add(this.rbOriginal);
-            this.Controls.Add(this.rbJpegLS);
-            this.Controls.Add(this.rbAB);
-            this.Controls.Add(this.rbBAC);
-            this.Controls.Add(this.rbABC2);
-            this.Controls.Add(this.rbABC);
-            this.Controls.Add(this.rbC);
-            this.Controls.Add(this.rbB);
-            this.Controls.Add(this.rbA);
-            this.Controls.Add(this.rb128);
             this.Name = "Form1";
             this.Text = "Prediction";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbError)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudErrormatrix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHistogram)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -370,6 +419,10 @@
         private System.Windows.Forms.PictureBox pbDecoded;
         private System.Windows.Forms.PictureBox pbError;
         private System.Windows.Forms.PictureBox pbOriginal;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.NumericUpDown nudHistogram;
+        private System.Windows.Forms.NumericUpDown nudErrormatrix;
     }
 }
 
