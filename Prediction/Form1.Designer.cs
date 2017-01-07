@@ -52,13 +52,13 @@
             this.btnSaveDecoded = new System.Windows.Forms.Button();
             this.btnHistogram = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pbDecoded = new System.Windows.Forms.PictureBox();
+            this.pbError = new System.Windows.Forms.PictureBox();
+            this.pbOriginal = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).BeginInit();
             this.SuspendLayout();
             // 
             // rb128
@@ -281,38 +281,38 @@
             this.chart1.TabIndex = 32;
             this.chart1.Text = "chart1";
             // 
-            // pictureBox1
+            // pbDecoded
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(679, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(268, 172);
-            this.pictureBox1.TabIndex = 33;
-            this.pictureBox1.TabStop = false;
+            this.pbDecoded.Location = new System.Drawing.Point(679, 14);
+            this.pbDecoded.Name = "pbDecoded";
+            this.pbDecoded.Size = new System.Drawing.Size(268, 172);
+            this.pbDecoded.TabIndex = 33;
+            this.pbDecoded.TabStop = false;
             // 
-            // pictureBox2
+            // pbError
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(361, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(268, 172);
-            this.pictureBox2.TabIndex = 34;
-            this.pictureBox2.TabStop = false;
+            this.pbError.Location = new System.Drawing.Point(361, 12);
+            this.pbError.Name = "pbError";
+            this.pbError.Size = new System.Drawing.Size(268, 172);
+            this.pbError.TabIndex = 34;
+            this.pbError.TabStop = false;
             // 
-            // pictureBox3
+            // pbOriginal
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(40, 12);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(268, 172);
-            this.pictureBox3.TabIndex = 35;
-            this.pictureBox3.TabStop = false;
+            this.pbOriginal.Location = new System.Drawing.Point(40, 12);
+            this.pbOriginal.Name = "pbOriginal";
+            this.pbOriginal.Size = new System.Drawing.Size(268, 172);
+            this.pbOriginal.TabIndex = 35;
+            this.pbOriginal.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1142, 530);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbOriginal);
+            this.Controls.Add(this.pbError);
+            this.Controls.Add(this.pbDecoded);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.btnHistogram);
             this.Controls.Add(this.btnSaveDecoded);
@@ -337,9 +337,9 @@
             this.Name = "Form1";
             this.Text = "Prediction";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,9 +367,9 @@
         private System.Windows.Forms.Button btnSaveDecoded;
         private System.Windows.Forms.Button btnHistogram;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pbDecoded;
+        private System.Windows.Forms.PictureBox pbError;
+        private System.Windows.Forms.PictureBox pbOriginal;
     }
 }
 
