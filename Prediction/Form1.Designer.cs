@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.rb128 = new System.Windows.Forms.RadioButton();
             this.rbA = new System.Windows.Forms.RadioButton();
             this.rbB = new System.Windows.Forms.RadioButton();
@@ -203,7 +203,7 @@
             // 
             // btnLoadImage
             // 
-            this.btnLoadImage.Location = new System.Drawing.Point(29, 196);
+            this.btnLoadImage.Location = new System.Drawing.Point(58, 339);
             this.btnLoadImage.Name = "btnLoadImage";
             this.btnLoadImage.Size = new System.Drawing.Size(94, 23);
             this.btnLoadImage.TabIndex = 24;
@@ -213,7 +213,7 @@
             // 
             // btnPredict
             // 
-            this.btnPredict.Location = new System.Drawing.Point(129, 196);
+            this.btnPredict.Location = new System.Drawing.Point(158, 339);
             this.btnPredict.Name = "btnPredict";
             this.btnPredict.Size = new System.Drawing.Size(94, 23);
             this.btnPredict.TabIndex = 25;
@@ -223,7 +223,7 @@
             // 
             // btnStore
             // 
-            this.btnStore.Location = new System.Drawing.Point(229, 196);
+            this.btnStore.Location = new System.Drawing.Point(258, 339);
             this.btnStore.Name = "btnStore";
             this.btnStore.Size = new System.Drawing.Size(94, 23);
             this.btnStore.TabIndex = 26;
@@ -233,7 +233,7 @@
             // 
             // btnErrorMatrix
             // 
-            this.btnErrorMatrix.Location = new System.Drawing.Point(491, 196);
+            this.btnErrorMatrix.Location = new System.Drawing.Point(552, 339);
             this.btnErrorMatrix.Name = "btnErrorMatrix";
             this.btnErrorMatrix.Size = new System.Drawing.Size(138, 23);
             this.btnErrorMatrix.TabIndex = 27;
@@ -243,7 +243,7 @@
             // 
             // btnLoadEncoded
             // 
-            this.btnLoadEncoded.Location = new System.Drawing.Point(662, 196);
+            this.btnLoadEncoded.Location = new System.Drawing.Point(731, 339);
             this.btnLoadEncoded.Name = "btnLoadEncoded";
             this.btnLoadEncoded.Size = new System.Drawing.Size(121, 23);
             this.btnLoadEncoded.TabIndex = 28;
@@ -253,7 +253,7 @@
             // 
             // btnDecode
             // 
-            this.btnDecode.Location = new System.Drawing.Point(789, 196);
+            this.btnDecode.Location = new System.Drawing.Point(858, 339);
             this.btnDecode.Name = "btnDecode";
             this.btnDecode.Size = new System.Drawing.Size(121, 23);
             this.btnDecode.TabIndex = 29;
@@ -263,7 +263,7 @@
             // 
             // btnSaveDecoded
             // 
-            this.btnSaveDecoded.Location = new System.Drawing.Point(916, 196);
+            this.btnSaveDecoded.Location = new System.Drawing.Point(985, 339);
             this.btnSaveDecoded.Name = "btnSaveDecoded";
             this.btnSaveDecoded.Size = new System.Drawing.Size(121, 23);
             this.btnSaveDecoded.TabIndex = 30;
@@ -283,33 +283,33 @@
             // 
             // chart1
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chart1.Legends.Add(legend9);
-            this.chart1.Location = new System.Drawing.Point(422, 274);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
+            this.chart1.Location = new System.Drawing.Point(429, 417);
             this.chart1.Name = "chart1";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chart1.Series.Add(series9);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(673, 231);
             this.chart1.TabIndex = 32;
             this.chart1.Text = "chart1";
             // 
             // pbDecoded
             // 
-            this.pbDecoded.Location = new System.Drawing.Point(679, 14);
+            this.pbDecoded.Location = new System.Drawing.Point(753, 12);
             this.pbDecoded.Name = "pbDecoded";
-            this.pbDecoded.Size = new System.Drawing.Size(268, 172);
+            this.pbDecoded.Size = new System.Drawing.Size(328, 307);
             this.pbDecoded.TabIndex = 33;
             this.pbDecoded.TabStop = false;
             // 
             // pbError
             // 
-            this.pbError.Location = new System.Drawing.Point(361, 12);
+            this.pbError.Location = new System.Drawing.Point(396, 12);
             this.pbError.Name = "pbError";
-            this.pbError.Size = new System.Drawing.Size(268, 172);
+            this.pbError.Size = new System.Drawing.Size(328, 307);
             this.pbError.TabIndex = 34;
             this.pbError.TabStop = false;
             // 
@@ -317,7 +317,7 @@
             // 
             this.pbOriginal.Location = new System.Drawing.Point(40, 12);
             this.pbOriginal.Name = "pbOriginal";
-            this.pbOriginal.Size = new System.Drawing.Size(268, 172);
+            this.pbOriginal.Size = new System.Drawing.Size(328, 307);
             this.pbOriginal.TabIndex = 35;
             this.pbOriginal.TabStop = false;
             // 
@@ -328,7 +328,7 @@
             this.groupBox1.Controls.Add(this.rbDecoded);
             this.groupBox1.Controls.Add(this.rbError);
             this.groupBox1.Controls.Add(this.rbOriginal);
-            this.groupBox1.Location = new System.Drawing.Point(212, 296);
+            this.groupBox1.Location = new System.Drawing.Point(219, 439);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(168, 229);
             this.groupBox1.TabIndex = 36;
@@ -346,7 +346,7 @@
             this.groupBox2.Controls.Add(this.rbB);
             this.groupBox2.Controls.Add(this.rbA);
             this.groupBox2.Controls.Add(this.rb128);
-            this.groupBox2.Location = new System.Drawing.Point(15, 243);
+            this.groupBox2.Location = new System.Drawing.Point(22, 386);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(154, 275);
             this.groupBox2.TabIndex = 37;
@@ -355,7 +355,7 @@
             // 
             // nudErrormatrix
             // 
-            this.nudErrormatrix.Location = new System.Drawing.Point(367, 199);
+            this.nudErrormatrix.Location = new System.Drawing.Point(428, 342);
             this.nudErrormatrix.Name = "nudErrormatrix";
             this.nudErrormatrix.Size = new System.Drawing.Size(70, 22);
             this.nudErrormatrix.TabIndex = 38;
@@ -371,7 +371,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1142, 530);
+            this.ClientSize = new System.Drawing.Size(1140, 670);
             this.Controls.Add(this.nudErrormatrix);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
