@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.rb128 = new System.Windows.Forms.RadioButton();
             this.rbA = new System.Windows.Forms.RadioButton();
             this.rbB = new System.Windows.Forms.RadioButton();
@@ -40,6 +43,22 @@
             this.rbOriginal = new System.Windows.Forms.RadioButton();
             this.rbError = new System.Windows.Forms.RadioButton();
             this.rbDecoded = new System.Windows.Forms.RadioButton();
+            this.btnLoadImage = new System.Windows.Forms.Button();
+            this.btnPredict = new System.Windows.Forms.Button();
+            this.btnStore = new System.Windows.Forms.Button();
+            this.btnErrorMatrix = new System.Windows.Forms.Button();
+            this.btnLoadEncoded = new System.Windows.Forms.Button();
+            this.btnDecode = new System.Windows.Forms.Button();
+            this.btnSaveDecoded = new System.Windows.Forms.Button();
+            this.btnHistogram = new System.Windows.Forms.Button();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // rb128
@@ -174,11 +193,135 @@
             this.rbDecoded.Text = "Decoded";
             this.rbDecoded.UseVisualStyleBackColor = true;
             // 
+            // btnLoadImage
+            // 
+            this.btnLoadImage.Location = new System.Drawing.Point(29, 196);
+            this.btnLoadImage.Name = "btnLoadImage";
+            this.btnLoadImage.Size = new System.Drawing.Size(94, 23);
+            this.btnLoadImage.TabIndex = 24;
+            this.btnLoadImage.Text = "Load image";
+            this.btnLoadImage.UseVisualStyleBackColor = true;
+            // 
+            // btnPredict
+            // 
+            this.btnPredict.Location = new System.Drawing.Point(129, 196);
+            this.btnPredict.Name = "btnPredict";
+            this.btnPredict.Size = new System.Drawing.Size(94, 23);
+            this.btnPredict.TabIndex = 25;
+            this.btnPredict.Text = "Predict";
+            this.btnPredict.UseVisualStyleBackColor = true;
+            // 
+            // btnStore
+            // 
+            this.btnStore.Location = new System.Drawing.Point(229, 196);
+            this.btnStore.Name = "btnStore";
+            this.btnStore.Size = new System.Drawing.Size(94, 23);
+            this.btnStore.TabIndex = 26;
+            this.btnStore.Text = "Store";
+            this.btnStore.UseVisualStyleBackColor = true;
+            // 
+            // btnErrorMatrix
+            // 
+            this.btnErrorMatrix.Location = new System.Drawing.Point(491, 196);
+            this.btnErrorMatrix.Name = "btnErrorMatrix";
+            this.btnErrorMatrix.Size = new System.Drawing.Size(138, 23);
+            this.btnErrorMatrix.TabIndex = 27;
+            this.btnErrorMatrix.Text = "Show error matrix";
+            this.btnErrorMatrix.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadEncoded
+            // 
+            this.btnLoadEncoded.Location = new System.Drawing.Point(662, 196);
+            this.btnLoadEncoded.Name = "btnLoadEncoded";
+            this.btnLoadEncoded.Size = new System.Drawing.Size(121, 23);
+            this.btnLoadEncoded.TabIndex = 28;
+            this.btnLoadEncoded.Text = "Load encoded";
+            this.btnLoadEncoded.UseVisualStyleBackColor = true;
+            // 
+            // btnDecode
+            // 
+            this.btnDecode.Location = new System.Drawing.Point(789, 196);
+            this.btnDecode.Name = "btnDecode";
+            this.btnDecode.Size = new System.Drawing.Size(121, 23);
+            this.btnDecode.TabIndex = 29;
+            this.btnDecode.Text = "Decode";
+            this.btnDecode.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveDecoded
+            // 
+            this.btnSaveDecoded.Location = new System.Drawing.Point(916, 196);
+            this.btnSaveDecoded.Name = "btnSaveDecoded";
+            this.btnSaveDecoded.Size = new System.Drawing.Size(121, 23);
+            this.btnSaveDecoded.TabIndex = 30;
+            this.btnSaveDecoded.Text = "Save decoded";
+            this.btnSaveDecoded.UseVisualStyleBackColor = true;
+            // 
+            // btnHistogram
+            // 
+            this.btnHistogram.Location = new System.Drawing.Point(225, 359);
+            this.btnHistogram.Name = "btnHistogram";
+            this.btnHistogram.Size = new System.Drawing.Size(124, 66);
+            this.btnHistogram.TabIndex = 31;
+            this.btnHistogram.Text = "Show histogram";
+            this.btnHistogram.UseVisualStyleBackColor = true;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(422, 274);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(673, 231);
+            this.chart1.TabIndex = 32;
+            this.chart1.Text = "chart1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(679, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(268, 172);
+            this.pictureBox1.TabIndex = 33;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(361, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(268, 172);
+            this.pictureBox2.TabIndex = 34;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(40, 12);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(268, 172);
+            this.pictureBox3.TabIndex = 35;
+            this.pictureBox3.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 530);
+            this.ClientSize = new System.Drawing.Size(1142, 530);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.btnHistogram);
+            this.Controls.Add(this.btnSaveDecoded);
+            this.Controls.Add(this.btnDecode);
+            this.Controls.Add(this.btnLoadEncoded);
+            this.Controls.Add(this.btnErrorMatrix);
+            this.Controls.Add(this.btnStore);
+            this.Controls.Add(this.btnPredict);
+            this.Controls.Add(this.btnLoadImage);
             this.Controls.Add(this.rbDecoded);
             this.Controls.Add(this.rbError);
             this.Controls.Add(this.rbOriginal);
@@ -193,6 +336,10 @@
             this.Controls.Add(this.rb128);
             this.Name = "Form1";
             this.Text = "Prediction";
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,6 +358,18 @@
         private System.Windows.Forms.RadioButton rbOriginal;
         private System.Windows.Forms.RadioButton rbError;
         private System.Windows.Forms.RadioButton rbDecoded;
+        private System.Windows.Forms.Button btnLoadImage;
+        private System.Windows.Forms.Button btnPredict;
+        private System.Windows.Forms.Button btnStore;
+        private System.Windows.Forms.Button btnErrorMatrix;
+        private System.Windows.Forms.Button btnLoadEncoded;
+        private System.Windows.Forms.Button btnDecode;
+        private System.Windows.Forms.Button btnSaveDecoded;
+        private System.Windows.Forms.Button btnHistogram;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 
