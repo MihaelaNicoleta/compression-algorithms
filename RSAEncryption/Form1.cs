@@ -63,13 +63,11 @@ namespace RSAEncryption
             int N = Convert.ToInt32(tbNEncrypt.Text.Trim());
             int E = Convert.ToInt32(tbEEncrypt.Text.Trim());
             
-    /*
             if((N < (int)Math.Pow(2, 8)) && (N > (int)Math.Pow(2, 32)))
             {
-                throw new Exception("Enter a smaller value for N.");
+                throw new Exception("N should have values between 2^8 and 2^32");
             }
-    */
-
+    
             if ((inputFileName != "") && (N > 0) && (E > 0))
             {
                 

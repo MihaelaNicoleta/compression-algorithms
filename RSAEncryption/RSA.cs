@@ -70,7 +70,8 @@ namespace RSAEncryption
 
             bitReader.cleanUp();
 
-            String encryptedFile = "encrypted_file.rsa";
+            String encryptedFileName = Path.GetFileNameWithoutExtension(fileToRead);
+            String encryptedFile = "encrypted_" + encryptedFileName + ".rsa";
             BitWriter bitWriter = new BitWriter(encryptedFile);
 
             writeEncryptedFile(bitWriter);
@@ -113,10 +114,13 @@ namespace RSAEncryption
 
                 nbr -= 8;
             }
+            
+            bitReader.cleanUp();
 
             //generate the decrypted file
-            String decompressedFile = "decrypted_file.decrypted";
-            BitWriter bitWriter = new BitWriter(decompressedFile);
+            String decryptedFileName = Path.GetFileNameWithoutExtension(encryptedFileToRead);            
+            String decryptedFile = "decrypted_" + decryptedFileName + ".decrypted";
+            BitWriter bitWriter = new BitWriter(decryptedFile);
 
             writeDecryptedDataToFile(bitWriter);
             bitWriter.cleanUp();
