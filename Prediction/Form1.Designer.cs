@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.rb128 = new System.Windows.Forms.RadioButton();
             this.rbA = new System.Windows.Forms.RadioButton();
             this.rbB = new System.Windows.Forms.RadioButton();
@@ -55,18 +55,19 @@
             this.pbDecoded = new System.Windows.Forms.PictureBox();
             this.pbError = new System.Windows.Forms.PictureBox();
             this.pbOriginal = new System.Windows.Forms.PictureBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.nudErrormatrix = new System.Windows.Forms.NumericUpDown();
+            this.gbHistogram = new System.Windows.Forms.GroupBox();
             this.nudHistogram = new System.Windows.Forms.NumericUpDown();
+            this.gbPredictionType = new System.Windows.Forms.GroupBox();
+            this.nudErrormatrix = new System.Windows.Forms.NumericUpDown();
+            this.tbMessage = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudErrormatrix)).BeginInit();
+            this.gbHistogram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHistogram)).BeginInit();
+            this.gbPredictionType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudErrormatrix)).BeginInit();
             this.SuspendLayout();
             // 
             // rb128
@@ -77,6 +78,7 @@
             this.rb128.Size = new System.Drawing.Size(53, 21);
             this.rb128.TabIndex = 12;
             this.rb128.TabStop = true;
+            this.rb128.Tag = "0";
             this.rb128.Text = "128";
             this.rb128.UseVisualStyleBackColor = true;
             // 
@@ -88,6 +90,7 @@
             this.rbA.Size = new System.Drawing.Size(38, 21);
             this.rbA.TabIndex = 13;
             this.rbA.TabStop = true;
+            this.rbA.Tag = "1";
             this.rbA.Text = "A";
             this.rbA.UseVisualStyleBackColor = true;
             // 
@@ -99,6 +102,7 @@
             this.rbB.Size = new System.Drawing.Size(38, 21);
             this.rbB.TabIndex = 14;
             this.rbB.TabStop = true;
+            this.rbB.Tag = "2";
             this.rbB.Text = "B";
             this.rbB.UseVisualStyleBackColor = true;
             // 
@@ -110,6 +114,7 @@
             this.rbC.Size = new System.Drawing.Size(38, 21);
             this.rbC.TabIndex = 15;
             this.rbC.TabStop = true;
+            this.rbC.Tag = "3";
             this.rbC.Text = "C";
             this.rbC.UseVisualStyleBackColor = true;
             // 
@@ -121,6 +126,7 @@
             this.rbABC.Size = new System.Drawing.Size(72, 21);
             this.rbABC.TabIndex = 16;
             this.rbABC.TabStop = true;
+            this.rbABC.Tag = "4";
             this.rbABC.Text = "A+B+C";
             this.rbABC.UseVisualStyleBackColor = true;
             // 
@@ -132,6 +138,7 @@
             this.rbABC2.Size = new System.Drawing.Size(91, 21);
             this.rbABC2.TabIndex = 17;
             this.rbABC2.TabStop = true;
+            this.rbABC2.Tag = "5";
             this.rbABC2.Text = "A+(B-C)/2";
             this.rbABC2.UseVisualStyleBackColor = true;
             // 
@@ -143,6 +150,7 @@
             this.rbBAC.Size = new System.Drawing.Size(91, 21);
             this.rbBAC.TabIndex = 18;
             this.rbBAC.TabStop = true;
+            this.rbBAC.Tag = "6";
             this.rbBAC.Text = "B+(A-C)/2";
             this.rbBAC.UseVisualStyleBackColor = true;
             // 
@@ -154,6 +162,7 @@
             this.rbAB.Size = new System.Drawing.Size(77, 21);
             this.rbAB.TabIndex = 19;
             this.rbAB.TabStop = true;
+            this.rbAB.Tag = "7";
             this.rbAB.Text = "(A+B)/2";
             this.rbAB.UseVisualStyleBackColor = true;
             // 
@@ -165,6 +174,7 @@
             this.rbJpegLS.Size = new System.Drawing.Size(73, 21);
             this.rbJpegLS.TabIndex = 20;
             this.rbJpegLS.TabStop = true;
+            this.rbJpegLS.Tag = "8";
             this.rbJpegLS.Text = "jpegLS";
             this.rbJpegLS.UseVisualStyleBackColor = true;
             // 
@@ -283,16 +293,16 @@
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart1.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(429, 417);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(673, 231);
             this.chart1.TabIndex = 32;
             this.chart1.Text = "chart1";
@@ -321,44 +331,19 @@
             this.pbOriginal.TabIndex = 35;
             this.pbOriginal.TabStop = false;
             // 
-            // groupBox1
+            // gbHistogram
             // 
-            this.groupBox1.Controls.Add(this.nudHistogram);
-            this.groupBox1.Controls.Add(this.btnHistogram);
-            this.groupBox1.Controls.Add(this.rbDecoded);
-            this.groupBox1.Controls.Add(this.rbError);
-            this.groupBox1.Controls.Add(this.rbOriginal);
-            this.groupBox1.Location = new System.Drawing.Point(219, 439);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(168, 229);
-            this.groupBox1.TabIndex = 36;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Histogram";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.rbJpegLS);
-            this.groupBox2.Controls.Add(this.rbAB);
-            this.groupBox2.Controls.Add(this.rbBAC);
-            this.groupBox2.Controls.Add(this.rbABC2);
-            this.groupBox2.Controls.Add(this.rbABC);
-            this.groupBox2.Controls.Add(this.rbC);
-            this.groupBox2.Controls.Add(this.rbB);
-            this.groupBox2.Controls.Add(this.rbA);
-            this.groupBox2.Controls.Add(this.rb128);
-            this.groupBox2.Location = new System.Drawing.Point(22, 386);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(154, 275);
-            this.groupBox2.TabIndex = 37;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Prediction type";
-            // 
-            // nudErrormatrix
-            // 
-            this.nudErrormatrix.Location = new System.Drawing.Point(428, 342);
-            this.nudErrormatrix.Name = "nudErrormatrix";
-            this.nudErrormatrix.Size = new System.Drawing.Size(70, 22);
-            this.nudErrormatrix.TabIndex = 38;
+            this.gbHistogram.Controls.Add(this.nudHistogram);
+            this.gbHistogram.Controls.Add(this.btnHistogram);
+            this.gbHistogram.Controls.Add(this.rbDecoded);
+            this.gbHistogram.Controls.Add(this.rbError);
+            this.gbHistogram.Controls.Add(this.rbOriginal);
+            this.gbHistogram.Location = new System.Drawing.Point(219, 439);
+            this.gbHistogram.Name = "gbHistogram";
+            this.gbHistogram.Size = new System.Drawing.Size(168, 229);
+            this.gbHistogram.TabIndex = 36;
+            this.gbHistogram.TabStop = false;
+            this.gbHistogram.Text = "Histogram";
             // 
             // nudHistogram
             // 
@@ -367,14 +352,48 @@
             this.nudHistogram.Size = new System.Drawing.Size(70, 22);
             this.nudHistogram.TabIndex = 40;
             // 
+            // gbPredictionType
+            // 
+            this.gbPredictionType.Controls.Add(this.rbJpegLS);
+            this.gbPredictionType.Controls.Add(this.rbAB);
+            this.gbPredictionType.Controls.Add(this.rbBAC);
+            this.gbPredictionType.Controls.Add(this.rbABC2);
+            this.gbPredictionType.Controls.Add(this.rbABC);
+            this.gbPredictionType.Controls.Add(this.rbC);
+            this.gbPredictionType.Controls.Add(this.rbB);
+            this.gbPredictionType.Controls.Add(this.rbA);
+            this.gbPredictionType.Controls.Add(this.rb128);
+            this.gbPredictionType.Location = new System.Drawing.Point(22, 386);
+            this.gbPredictionType.Name = "gbPredictionType";
+            this.gbPredictionType.Size = new System.Drawing.Size(154, 275);
+            this.gbPredictionType.TabIndex = 37;
+            this.gbPredictionType.TabStop = false;
+            this.gbPredictionType.Text = "Prediction type";
+            // 
+            // nudErrormatrix
+            // 
+            this.nudErrormatrix.Location = new System.Drawing.Point(428, 342);
+            this.nudErrormatrix.Name = "nudErrormatrix";
+            this.nudErrormatrix.Size = new System.Drawing.Size(70, 22);
+            this.nudErrormatrix.TabIndex = 38;
+            // 
+            // tbMessage
+            // 
+            this.tbMessage.Location = new System.Drawing.Point(236, 700);
+            this.tbMessage.Multiline = true;
+            this.tbMessage.Name = "tbMessage";
+            this.tbMessage.Size = new System.Drawing.Size(624, 38);
+            this.tbMessage.TabIndex = 39;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 670);
+            this.ClientSize = new System.Drawing.Size(1141, 750);
+            this.Controls.Add(this.tbMessage);
             this.Controls.Add(this.nudErrormatrix);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbPredictionType);
+            this.Controls.Add(this.gbHistogram);
             this.Controls.Add(this.pbOriginal);
             this.Controls.Add(this.pbError);
             this.Controls.Add(this.pbDecoded);
@@ -392,13 +411,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbError)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudErrormatrix)).EndInit();
+            this.gbHistogram.ResumeLayout(false);
+            this.gbHistogram.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHistogram)).EndInit();
+            this.gbPredictionType.ResumeLayout(false);
+            this.gbPredictionType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudErrormatrix)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -427,10 +447,11 @@
         private System.Windows.Forms.PictureBox pbDecoded;
         private System.Windows.Forms.PictureBox pbError;
         private System.Windows.Forms.PictureBox pbOriginal;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbHistogram;
+        private System.Windows.Forms.GroupBox gbPredictionType;
         private System.Windows.Forms.NumericUpDown nudHistogram;
         private System.Windows.Forms.NumericUpDown nudErrormatrix;
+        private System.Windows.Forms.TextBox tbMessage;
     }
 }
 

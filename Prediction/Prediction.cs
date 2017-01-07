@@ -9,6 +9,7 @@ namespace Prediction
     class Prediction
     {
         private int predictionType;
+        private int[,] errorMatrix = new int[256, 256];
 
         public Prediction()
         {
