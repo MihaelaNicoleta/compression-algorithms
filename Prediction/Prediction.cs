@@ -302,7 +302,7 @@ namespace Prediction
             bitWriter.writeNBits(predictionType, 4);
 
             /* Write the error matrix using one of the 2 options */
-            writeMatrixToFile(bitWriter, 9, errorMatrix);
+            writeErrorMatrixToFile(bitWriter, 9, errorMatrix);
 
             bitWriter.cleanUp();
 
@@ -311,8 +311,8 @@ namespace Prediction
 
         public String storeDecompressedFile(String pictureName)
         {
-            String compressedFile = pictureName + ".bmp[" + predictionType + "]" + ".pre.decoded";
-            BitWriter bitWriter = new BitWriter(compressedFile);
+            String decompressedFile = pictureName + ".decoded";
+            BitWriter bitWriter = new BitWriter(decompressedFile);
 
             /* Copy the first 1078 ints from the original bmp file */
             foreach (int headerData in bitmapHeader)
@@ -320,15 +320,15 @@ namespace Prediction
                 bitWriter.writeNBits((int)headerData, 8);
             }
 
-            /* Write the error matrix using one of the 2 options */
-            //writeMatrixToFile(bitWriter, 9, pictureMatrix);
+            /* Write the picture matrix */
+            writePictureMatrixToFile(bitWriter, 8, pictureMatrix);
 
             bitWriter.cleanUp();
 
-            return compressedFile;
+            return decompressedFile;
         }
 
-        private void writeMatrixToFile(BitWriter bitWriter, int noBits, int[,] matrix)
+        private void writeErrorMatrixToFile(BitWriter bitWriter, int noBits, int[,] matrix)
         {
             int valueToWrite;
             for (int row = 0; row < bitmapSize; row++)
@@ -346,6 +346,18 @@ namespace Prediction
                         bitWriter.writeBit(0); //0 = positive
                     }
                     bitWriter.writeNBits(valueToWrite, noBits - 1);
+                }
+            }
+
+        }
+
+        private void writePictureMatrixToFile(BitWriter bitWriter, int noBits, int[,] matrix)
+        {
+            for (int row = 0; row < bitmapSize; row++)
+            {
+                for (int column = 0; column < bitmapSize; column++)
+                {
+                    bitWriter.writeNBits(matrix[row, column], noBits);
                 }
             }
 
