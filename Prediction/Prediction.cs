@@ -76,9 +76,6 @@ namespace Prediction
 
             bitReader.cleanUp();
 
-            //writeMatrixToConsole(errorMatrix);
-            //Console.WriteLine("------------------------------------");
-
             return true;
         }
 
@@ -418,13 +415,16 @@ namespace Prediction
         private int[,] getPictureMatrixFromCompressedFile()
         {
             int predictedValue;
+            int pictureMatrixValue;
             int[,] imageMatrix = new int[bitmapSize, bitmapSize];
             for (int row = 0; row < bitmapSize; row++)
             {
                 for (int column = 0; column < bitmapSize; column++)
                 {
                     predictedValue = getPredictedValueForPixel(imageMatrix, row, column);
-                    imageMatrix[row, column] = (int)(predictedValue + errorMatrix[row, column]);
+                    pictureMatrixValue = predictedValue + errorMatrix[row, column];
+                    imageMatrix[row, column] = pictureMatrixValue;
+                    setPixelValue(row, column, pictureMatrixValue);
                 }               
             }
 
