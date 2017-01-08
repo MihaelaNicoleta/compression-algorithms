@@ -78,7 +78,13 @@ namespace Prediction
 
         private void btnStore_Click(object sender, EventArgs e)
         {
+            String pictureName = Path.GetFileNameWithoutExtension(inputPictureName);
+            var ok = compresser.storeCompressedFile(pictureName);
 
+            if (ok == true)
+            {
+                tbMessage.Text = "The file was saved.\r\n";
+            }
         }
 
         private void btnErrorMatrix_Click(object sender, EventArgs e)

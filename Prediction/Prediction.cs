@@ -49,10 +49,7 @@ namespace Prediction
 
             /* error matrix */
             errorMatrix = getErrorMatrix(pictureMatrix, predictionMatrix);
-
-
-
-
+            
             bitReader.cleanUp();
             
             return true;
@@ -169,6 +166,38 @@ namespace Prediction
         {
             return ((row != 0) && (column != 0));
         }
-        
+
+        public bool storeCompressedFile(String pictureName)
+        {
+            String compressedFile = pictureName + ".bmp[" + predictionType + "]" + ".pre";
+            BitWriter bitWriter = new BitWriter(compressedFile);
+
+            /* Copy the first 1078 bytes from the original bmp file */
+            foreach(byte headerData in bitmapHeader)
+            {
+                bitWriter.writeNBits(headerData, 8);
+            }
+
+            /* Write another 4 BITS with the value meaning what prediction was selected */
+            bitWriter.writeNBits(predictionType, 4);
+
+            /* Write the error matrix using one of the 2 options */
+            writeMatrix(bitWriter, 9, errorMatrix);
+
+            return true;            
+        }
+
+        private void writeMatrix(BitWriter bitWriter, int noBits, byte[,] matrix)
+        {
+            for (int row = 0; row < bitmapSize; row++)
+            {
+                for (int column = 0; column < bitmapSize; column++)
+                {
+                    bitWriter.writeNBits(matrix[row, column], noBits);
+                }
+            }
+        }
+
+
     }
 }
