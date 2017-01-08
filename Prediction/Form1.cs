@@ -24,6 +24,8 @@ namespace Prediction
 
         int checkedRadioButtonIndex = 0;
 
+        Histogram histogram;
+
         public Form1()
         {
             InitializeComponent();
@@ -152,6 +154,35 @@ namespace Prediction
                                       .FirstOrDefault(r => r.Checked);
 
             checkedRadioButtonIndex = (checkedRadioButton != null) ? Convert.ToInt32(checkedRadioButton.Tag) : 0;
+
+            double scaleValue = (double)nudHistogram.Value;
+            histogram = new Histogram(scaleValue);
+
+            switch (checkedRadioButtonIndex)
+            {
+                case 0:
+                    {
+                        histogram.drawHistogram(originalPictureMatrix);
+                        break;
+                    }
+                case 1:
+                    {
+                        histogram.drawHistogram(errorMatrix);
+                        break;
+                    }
+                case 2:
+                    {
+                        histogram.drawHistogram(decompressedPictureMatrix);
+                        break;
+                    }
+                default:
+                    {
+
+                        break;
+                    }
+
+            }
+
         }
         
     }
