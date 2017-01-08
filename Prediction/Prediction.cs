@@ -167,7 +167,7 @@ namespace Prediction
             return ((row != 0) && (column != 0));
         }
 
-        public bool storeCompressedFile(String pictureName)
+        public String storeCompressedFile(String pictureName)
         {
             String compressedFile = pictureName + ".bmp[" + predictionType + "]" + ".pre";
             BitWriter bitWriter = new BitWriter(compressedFile);
@@ -182,12 +182,12 @@ namespace Prediction
             bitWriter.writeNBits(predictionType, 4);
 
             /* Write the error matrix using one of the 2 options */
-            writeMatrix(bitWriter, 9, errorMatrix);
+            writeMatrixToFile(bitWriter, 9, errorMatrix);
 
-            return true;            
+            return compressedFile;            
         }
 
-        private void writeMatrix(BitWriter bitWriter, int noBits, byte[,] matrix)
+        private void writeMatrixToFile(BitWriter bitWriter, int noBits, byte[,] matrix)
         {
             for (int row = 0; row < bitmapSize; row++)
             {
