@@ -198,6 +198,46 @@ namespace Prediction
             }
         }
 
+        public Bitmap createBitmapFromMatrix(byte[,] matrix, double scaleValue)
+        {
+            Bitmap bitmapFromMatrix = new Bitmap(bitmapSize, bitmapSize);
+
+            int pixel;
+            for (int row = 0; row < bitmapSize; row++)
+            {
+                for (int column = 0; column < bitmapSize; column++)
+                {
+                    pixel = (int)(128 + scaleValue * errorMatrix[row, column]);
+                    bitmapFromMatrix.SetPixel(column, row, getColorValueForPixel(pixel));
+                }
+            }
+
+            return bitmapFromMatrix;      
+        }
+
+        private int getPixelValueForDisplay(int pixel)
+        {
+            if (pixel < 0)
+            {
+                pixel = 0;
+            }
+            else
+            {
+                if (pixel > bitmapSize)
+                {
+                    pixel = bitmapSize;
+                }
+            }
+
+            return pixel;
+        }
+
+        private Color getColorValueForPixel(int pixelValue)
+        {
+            pixelValue = getPixelValueForDisplay(pixelValue);
+            return Color.FromArgb(pixelValue, pixelValue, pixelValue);
+        }
+
 
     }
 }
