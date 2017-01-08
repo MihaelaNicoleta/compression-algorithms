@@ -14,8 +14,10 @@ namespace Prediction
         int bitmapHeaderSize = 1078;
 
         private int predictionType;
-        private byte[,] errorMatrix;
         private byte[,] pictureMatrix;
+        private byte[,] errorMatrix;
+        private byte[,] predictionMatrix;
+
 
         byte[] bitmapHeader;
 
@@ -41,9 +43,12 @@ namespace Prediction
 
             /* original picture matrix */
             pictureMatrix = getMatrixFromPicture(bitReader);
+            
+            /* prediction matrix */
+            predictionMatrix = getPredictedMatrix(pictureMatrix);
 
-
-
+            /* error matrix */
+            errorMatrix = getErrorMatrix(pictureMatrix, predictionMatrix);
 
 
 
@@ -92,7 +97,44 @@ namespace Prediction
         {
             pictureMatrix[row, column] = valueForPixel;
         }
+        
+        private byte[,] getPredictedMatrix(byte[,] pictureMatrix)
+        {
+            byte[,] bmpPredictionMatrix = new byte[bitmapSize, bitmapSize];
 
+            for (int row = 0; row < bitmapSize; row++)
+            {
+                for (int column = 0; column < bitmapSize; column++)
+                {
+                    bmpPredictionMatrix[row, column] = getPredictedValueForPixel(pictureMatrix, row, column);
+                }
+            }
+
+            return bmpPredictionMatrix;
+        }
+
+        private byte[,] getErrorMatrix(byte[,] pictureMatrix, byte[,] predictionMatrix)
+        {
+            byte[,] bmpErrorMatrix = new byte[bitmapSize, bitmapSize];
+
+            for (int row = 0; row < bitmapSize; row++)
+            {
+                for (int column = 0; column < bitmapSize; column++)
+                {
+                    bmpErrorMatrix[row, column] = (byte)(pictureMatrix[row, column] - predictionMatrix[row, column]);
+                }
+            }
+
+            return bmpErrorMatrix;
+        }
+        
+        private byte getPredictedValueForPixel(byte[,] pictureMatrix, int row, int column)
+        {
+            return 0;
+        }
+
+
+        /* get pixel position */
         private byte getAFromMatrix(int row, int column)
         {
             return pictureMatrix[row, column - 1];
@@ -122,8 +164,11 @@ namespace Prediction
         {
             return column == 0;
         }
-
-
-
+        
+        private bool isInternMatrixPixel(int row, int column)
+        {
+            return ((row != 0) && (column != 0));
+        }
+        
     }
 }
