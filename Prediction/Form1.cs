@@ -148,7 +148,10 @@ namespace Prediction
 
         private void btnHistogram_Click(object sender, EventArgs e)
         {
+            var checkedRadioButton = gbHistogram.Controls.OfType<RadioButton>()
+                                      .FirstOrDefault(r => r.Checked);
 
+            checkedRadioButtonIndex = (checkedRadioButton != null) ? Convert.ToInt32(checkedRadioButton.Tag) : 0;
         }
         
     }

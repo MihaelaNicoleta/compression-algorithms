@@ -186,6 +186,7 @@
             this.rbOriginal.Size = new System.Drawing.Size(78, 21);
             this.rbOriginal.TabIndex = 21;
             this.rbOriginal.TabStop = true;
+            this.rbOriginal.Tag = "0";
             this.rbOriginal.Text = "Original";
             this.rbOriginal.UseVisualStyleBackColor = true;
             // 
@@ -197,6 +198,7 @@
             this.rbError.Size = new System.Drawing.Size(127, 21);
             this.rbError.TabIndex = 22;
             this.rbError.TabStop = true;
+            this.rbError.Tag = "1";
             this.rbError.Text = "Error prediction";
             this.rbError.UseVisualStyleBackColor = true;
             // 
@@ -208,6 +210,7 @@
             this.rbDecoded.Size = new System.Drawing.Size(86, 21);
             this.rbDecoded.TabIndex = 23;
             this.rbDecoded.TabStop = true;
+            this.rbDecoded.Tag = "2";
             this.rbDecoded.Text = "Decoded";
             this.rbDecoded.UseVisualStyleBackColor = true;
             // 
