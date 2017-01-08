@@ -351,7 +351,7 @@ namespace Prediction
 
         }
 
-        public Bitmap createBitmapFromMatrix(int[,] matrix, double scaleValue)
+        public Bitmap createBitmapFromMatrix(int[,] matrix, double scaleValue, bool scalable = false)
         {
             Bitmap bitmapFromMatrix = new Bitmap(bitmapSize, bitmapSize);
 
@@ -360,7 +360,15 @@ namespace Prediction
             {
                 for (int column = 0; column < bitmapSize; column++)
                 {
-                    pixel = (int)((bitmapSize/2) + matrix[row, column] * scaleValue);
+                    if(scalable == true)
+                    {
+                        pixel = matrix[row, column];
+                    }
+                    else
+                    {
+                        pixel = (int)((bitmapSize / 2) + matrix[row, column] * scaleValue);
+                    }
+                    
                     bitmapFromMatrix.SetPixel(column, 255 - row, getColorValueForPixel(pixel));
                 }
             }

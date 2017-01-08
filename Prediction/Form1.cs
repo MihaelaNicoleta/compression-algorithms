@@ -123,7 +123,7 @@ namespace Prediction
 
                 Bitmap decodedPicture;
 
-                decodedPicture = compresser.createBitmapFromMatrix(compresser.getPredictionPictureMatrix(), 1);
+                decodedPicture = compresser.createBitmapFromMatrix(compresser.getPredictionPictureMatrix(), 1, true);
                 pbDecoded.Image = (Bitmap)decodedPicture.Clone();
             }
             else
