@@ -361,7 +361,7 @@ namespace Prediction
                 for (int column = 0; column < bitmapSize; column++)
                 {
                     pixel = (int)((bitmapSize/2) + matrix[row, column] * scaleValue);
-                    bitmapFromMatrix.SetPixel(column, row, getColorValueForPixel(pixel));
+                    bitmapFromMatrix.SetPixel(column, 255 - row, getColorValueForPixel(pixel));
                 }
             }
 
