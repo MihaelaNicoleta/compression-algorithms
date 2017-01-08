@@ -118,8 +118,14 @@ namespace Prediction
 
                 if (ok == true)
                 {
-                    tbMessage.Text = "Compression was a great success.\r\n";
+                    tbMessage.Text = "Decompression was a great success.\r\n";
                 }
+
+                Bitmap decodedPicture;
+                double scaleValue = (double)nudErrorMatrix.Value;
+
+                //decodedPicture = compresser.createBitmapFromMatrix(compresser.getPredictionPictureMatrix(), 1);
+                //pbDecoded.Image = (Bitmap)decodedPicture.Clone();
             }
             else
             {
@@ -129,7 +135,10 @@ namespace Prediction
 
         private void btnSaveDecoded_Click(object sender, EventArgs e)
         {
+            String pictureName = Path.GetFileNameWithoutExtension(compressedPictureName);
+            var savedFileName = compresser.storeCompressedFile(pictureName);
 
+            tbMessage.Text = "The file: " + savedFileName + " was saved.\r\n";
         }
 
         private void btnHistogram_Click(object sender, EventArgs e)
