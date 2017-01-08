@@ -184,6 +184,8 @@ namespace Prediction
             /* Write the error matrix using one of the 2 options */
             writeMatrixToFile(bitWriter, 9, errorMatrix);
 
+            bitWriter.cleanUp();
+
             return compressedFile;            
         }
 
@@ -207,7 +209,7 @@ namespace Prediction
             {
                 for (int column = 0; column < bitmapSize; column++)
                 {
-                    pixel = (int)(128 + scaleValue * errorMatrix[row, column]);
+                    pixel = (int)((bitmapSize/2) + scaleValue * errorMatrix[row, column]);
                     bitmapFromMatrix.SetPixel(column, row, getColorValueForPixel(pixel));
                 }
             }
@@ -238,6 +240,14 @@ namespace Prediction
             return Color.FromArgb(pixelValue, pixelValue, pixelValue);
         }
 
+
+
+        /* for UI */
+
+        public byte[,] getPredictionErrorMatrix()
+        {
+            return errorMatrix;
+        }
 
     }
 }

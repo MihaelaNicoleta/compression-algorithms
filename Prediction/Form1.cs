@@ -16,9 +16,7 @@ namespace Prediction
     {
         String inputPictureName;
         String compressedPictureName;
-
-        Bitmap originalPicture;
-
+        
         Prediction compresser;
 
         
@@ -45,7 +43,7 @@ namespace Prediction
             }
 
             FileStream fileStream = new FileStream(inputPictureName, FileMode.Open);
-            originalPicture = new Bitmap(fileStream);
+            Bitmap originalPicture = new Bitmap(fileStream);
             fileStream.Close();
             pbOriginal.Image = (Bitmap)originalPicture.Clone();
         }
@@ -87,7 +85,11 @@ namespace Prediction
 
         private void btnErrorMatrix_Click(object sender, EventArgs e)
         {
+            Bitmap errorPicture;
+            double scaleValue = (double)nudErrorMatrix.Value;
 
+            errorPicture = compresser.createBitmapFromMatrix(compresser.getPredictionErrorMatrix(), scaleValue);
+            pbError.Image = (Bitmap)errorPicture.Clone();
         }
 
         private void btnLoadEncoded_Click(object sender, EventArgs e)

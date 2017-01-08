@@ -58,7 +58,7 @@
             this.gbHistogram = new System.Windows.Forms.GroupBox();
             this.nudHistogram = new System.Windows.Forms.NumericUpDown();
             this.gbPredictionType = new System.Windows.Forms.GroupBox();
-            this.nudErrormatrix = new System.Windows.Forms.NumericUpDown();
+            this.nudErrorMatrix = new System.Windows.Forms.NumericUpDown();
             this.tbMessage = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).BeginInit();
@@ -67,7 +67,7 @@
             this.gbHistogram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHistogram)).BeginInit();
             this.gbPredictionType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudErrormatrix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudErrorMatrix)).BeginInit();
             this.SuspendLayout();
             // 
             // rb128
@@ -370,12 +370,12 @@
             this.gbPredictionType.TabStop = false;
             this.gbPredictionType.Text = "Prediction type";
             // 
-            // nudErrormatrix
+            // nudErrorMatrix
             // 
-            this.nudErrormatrix.Location = new System.Drawing.Point(428, 342);
-            this.nudErrormatrix.Name = "nudErrormatrix";
-            this.nudErrormatrix.Size = new System.Drawing.Size(70, 22);
-            this.nudErrormatrix.TabIndex = 38;
+            this.nudErrorMatrix.Location = new System.Drawing.Point(428, 342);
+            this.nudErrorMatrix.Name = "nudErrorMatrix";
+            this.nudErrorMatrix.Size = new System.Drawing.Size(70, 22);
+            this.nudErrorMatrix.TabIndex = 38;
             // 
             // tbMessage
             // 
@@ -391,7 +391,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 750);
             this.Controls.Add(this.tbMessage);
-            this.Controls.Add(this.nudErrormatrix);
+            this.Controls.Add(this.nudErrorMatrix);
             this.Controls.Add(this.gbPredictionType);
             this.Controls.Add(this.gbHistogram);
             this.Controls.Add(this.pbOriginal);
@@ -416,7 +416,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudHistogram)).EndInit();
             this.gbPredictionType.ResumeLayout(false);
             this.gbPredictionType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudErrormatrix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudErrorMatrix)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -450,7 +450,7 @@
         private System.Windows.Forms.GroupBox gbHistogram;
         private System.Windows.Forms.GroupBox gbPredictionType;
         private System.Windows.Forms.NumericUpDown nudHistogram;
-        private System.Windows.Forms.NumericUpDown nudErrormatrix;
+        private System.Windows.Forms.NumericUpDown nudErrorMatrix;
         private System.Windows.Forms.TextBox tbMessage;
     }
 }
