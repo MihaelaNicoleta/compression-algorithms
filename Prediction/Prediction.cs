@@ -127,9 +127,36 @@ namespace Prediction
         
         private byte getPredictedValueForPixel(byte[,] pictureMatrix, int row, int column)
         {
-            return 0;
+            if(isFirstPixel(row, column))
+            {
+                return (byte)(bitmapSize / 2);
+            }
+            else
+            {
+                if(isRowZeroPixel(row))
+                {
+                    return getAFromMatrix(row, column);
+                }
+                else
+                {
+                    if(isColumnZeroPixel(column))
+                    {
+                        return getBFromMatrix(row, column);
+                    }
+                    else
+                    {
+                        return getValueFromPredictor(row, column);
+                    }
+                }
+            }
         }
 
+        private byte getValueFromPredictor(int row, int column)
+        {
+
+
+            return 0;
+        }
 
         /* get pixel position */
         private byte getAFromMatrix(int row, int column)
