@@ -18,8 +18,10 @@ namespace Prediction
         String compressedPictureName;
         
         Prediction compresser;
+        private int[,] originalPictureMatrix;
+        private int[,] errorMatrix;
+        private int[,] decompressedPictureMatrix;
 
-        
         int checkedRadioButtonIndex = 0;
 
         public Form1()
@@ -62,6 +64,7 @@ namespace Prediction
                 compresser = new Prediction(checkedRadioButtonIndex);
                 var ok = compresser.compress(inputPictureName);
 
+                originalPictureMatrix = compresser.getPredictionPictureMatrix();
                 if (ok == true)
                 {
                     tbMessage.Text = "Compression was a great success.\r\n";
@@ -88,7 +91,9 @@ namespace Prediction
             Bitmap errorPicture;
             double scaleValue = (double)nudErrorMatrix.Value;
 
-            errorPicture = compresser.createBitmapFromMatrix(compresser.getPredictionErrorMatrix(), scaleValue);
+            errorMatrix = compresser.getPredictionErrorMatrix();
+
+            errorPicture = compresser.createBitmapFromMatrix(errorMatrix, scaleValue);
             pbError.Image = (Bitmap)errorPicture.Clone();
         }
 
@@ -122,8 +127,9 @@ namespace Prediction
                 }
 
                 Bitmap decodedPicture;
+                decompressedPictureMatrix = compresser.getPredictionPictureMatrix();
 
-                decodedPicture = compresser.createBitmapFromMatrix(compresser.getPredictionPictureMatrix(), 1, true);
+                decodedPicture = compresser.createBitmapFromMatrix(decompressedPictureMatrix, 1, true);
                 pbDecoded.Image = (Bitmap)decodedPicture.Clone();
             }
             else
