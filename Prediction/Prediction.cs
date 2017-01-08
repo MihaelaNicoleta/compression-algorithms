@@ -153,9 +153,14 @@ namespace Prediction
 
         private byte getValueFromPredictor(int row, int column)
         {
-            byte predictedValue;
+            byte predictedValue = 0;
+            int temp;
 
-            switch(predictionType)
+            byte a = getAFromMatrix(row, column);
+            byte b = getBFromMatrix(row, column);
+            byte c = getCFromMatrix(row, column);
+
+            switch (predictionType)
             {
                 case 0: /* 128 prediction */
                     {
@@ -164,47 +169,69 @@ namespace Prediction
                     }
                 case 1: /* A prediction*/
                     {
-                        predictedValue = getAFromMatrix(row, column);
+                        predictedValue = a;
                         break;
                     }
                 case 2: /* B prediction */
                     {
-                        predictedValue = getBFromMatrix(row, column);
+                        predictedValue = b;
                         break;
                     }
                 case 3: /* C prediction */
                     {
-                        predictedValue = getCFromMatrix(row, column);
+                        predictedValue = c;
                         break;
                     }
-                case 4: /* A+B+C prediction */
+                case 4: /* A+B-C prediction */
                     {
-                        predictedValue = getAFromMatrix(row, column);
+                        temp = a + b - c;
+                        predictedValue = (byte)getPixelValueWithinInterval(temp);
                         break;
                     }
                 case 5: /* A+(B-C)/2 prediction */
                     {
-
+                        temp = a + (b - c) / 2;
+                        predictedValue = (byte)getPixelValueWithinInterval(temp);
                         break;
                     }
                 case 6: /* B+(A-C)/2 prediction */
                     {
-
+                        temp = b + (a - c) / 2;
+                        predictedValue = (byte)getPixelValueWithinInterval(temp);
                         break;
                     }
                 case 7: /* (A+B)/2 prediction */
                     {
-
+                        temp = (a + b) / 2;
+                        predictedValue = (byte)getPixelValueWithinInterval(temp);
                         break;
                     }
                 case 8: /* jpegLS prediction */
                     {
+                        var min = Math.Min(a, b);
+                        var max = Math.Max(a, b);
+
+                        if (c >= max)
+                        {
+                            predictedValue = min;
+                        }
+                        else
+                        {
+                            if(c <= min)
+                            {
+                                predictedValue = max;
+                            }
+                            else
+                            {
+                                predictedValue = (byte)(a + b - c);
+                            }
+                        }
 
                         break;
                     }
             }
 
-            return 0;
+            return predictedValue;
         }
 
         /* get pixel position */
@@ -293,7 +320,7 @@ namespace Prediction
             return bitmapFromMatrix;      
         }
 
-        private int getPixelValueForDisplay(int pixel)
+        private int getPixelValueWithinInterval(int pixel)
         {
             if (pixel < 0)
             {
@@ -312,7 +339,7 @@ namespace Prediction
 
         private Color getColorValueForPixel(int pixelValue)
         {
-            pixelValue = getPixelValueForDisplay(pixelValue);
+            pixelValue = getPixelValueWithinInterval(pixelValue);
             return Color.FromArgb(pixelValue, pixelValue, pixelValue);
         }
 
