@@ -122,10 +122,9 @@ namespace Prediction
                 }
 
                 Bitmap decodedPicture;
-                double scaleValue = (double)nudErrorMatrix.Value;
 
-                //decodedPicture = compresser.createBitmapFromMatrix(compresser.getPredictionPictureMatrix(), 1);
-                //pbDecoded.Image = (Bitmap)decodedPicture.Clone();
+                decodedPicture = compresser.createBitmapFromMatrix(compresser.getPredictionPictureMatrix(), 1);
+                pbDecoded.Image = (Bitmap)decodedPicture.Clone();
             }
             else
             {

@@ -14,26 +14,26 @@ namespace Prediction
         int bitmapHeaderSize = 1078;
 
         private int predictionType;
-        private byte[,] pictureMatrix;
+        private int[,] pictureMatrix;
         private int[,] errorMatrix;
-        private byte[,] predictionMatrix;
+        private int[,] predictionMatrix;
 
 
-        byte[] bitmapHeader;
+        int[] bitmapHeader;
 
         public Prediction()
         {
             errorMatrix = new int[bitmapSize, bitmapSize];
-            pictureMatrix = new byte[bitmapSize, bitmapSize];
-            bitmapHeader = new byte[bitmapHeaderSize];
+            pictureMatrix = new int[bitmapSize, bitmapSize];
+            bitmapHeader = new int[bitmapHeaderSize];
     }
 
         public Prediction(int predictionType)
         {
             this.predictionType = predictionType;
             errorMatrix = new int[bitmapSize, bitmapSize];
-            pictureMatrix = new byte[bitmapSize, bitmapSize];
-            bitmapHeader = new byte[bitmapHeaderSize];
+            pictureMatrix = new int[bitmapSize, bitmapSize];
+            bitmapHeader = new int[bitmapHeaderSize];
         }
 
         public bool compress(String fileToRead)
@@ -83,41 +83,41 @@ namespace Prediction
         }
 
 
-        private byte[,] getMatrixFromPicture(BitReader bitReader)
+        private int[,] getMatrixFromPicture(BitReader bitReader)
         {
-            byte[,] pictureMatrix = new byte[bitmapSize, bitmapSize];
+            int[,] pictureMatrix = new int[bitmapSize, bitmapSize];
 
             for (int row = 0; row < bitmapSize; row++)
             {
                 for (int column = 0; column < bitmapSize; column++)
                 {
-                    pictureMatrix[row, column] = (byte)bitReader.readNBits(8);
+                    pictureMatrix[row, column] = (int)bitReader.readNBits(8);
                 }
             }
 
             return pictureMatrix;
         }
 
-        private byte[] getHeaderFromPicture(BitReader bitReader, int noBitsToRead)
+        private int[] getHeaderFromPicture(BitReader bitReader, int noBitsToRead)
         {
-            byte[] bmpHeader = new byte[bitmapHeaderSize];
+            int[] bmpHeader = new int[bitmapHeaderSize];
 
             for(int i = 0; i < bitmapHeaderSize; i++)
             {
-                bmpHeader[i] = (byte)bitReader.readNBits(8);
+                bmpHeader[i] = (int)bitReader.readNBits(8);
             }
 
             return bmpHeader;
         }
 
-        private void setPixelValue(int row, int column, byte valueForPixel)
+        private void setPixelValue(int row, int column, int valueForPixel)
         {
             pictureMatrix[row, column] = valueForPixel;
         }
         
-        private byte[,] getPredictedMatrix(byte[,] pictureMatrix)
+        private int[,] getPredictedMatrix(int[,] pictureMatrix)
         {
-            byte[,] bmpPredictionMatrix = new byte[bitmapSize, bitmapSize];
+            int[,] bmpPredictionMatrix = new int[bitmapSize, bitmapSize];
 
             for (int row = 0; row < bitmapSize; row++)
             {
@@ -130,7 +130,7 @@ namespace Prediction
             return bmpPredictionMatrix;
         }
 
-        private int[,] getErrorMatrix(byte[,] pictureMatrix, byte[,] predictionMatrix)
+        private int[,] getErrorMatrix(int[,] pictureMatrix, int[,] predictionMatrix)
         {
             int[,] bmpErrorMatrix = new int[bitmapSize, bitmapSize];
 
@@ -145,11 +145,11 @@ namespace Prediction
             return bmpErrorMatrix;
         }
         
-        private byte getPredictedValueForPixel(byte[,] pictureMatrix, int row, int column)
+        private int getPredictedValueForPixel(int[,] pictureMatrix, int row, int column)
         {
             if(isFirstPixel(row, column))
             {
-                return (byte)(bitmapSize / 2);
+                return (int)(bitmapSize / 2);
             }
             else
             {
@@ -171,20 +171,20 @@ namespace Prediction
             }
         }
 
-        private byte getValueFromPredictor(int row, int column)
+        private int getValueFromPredictor(int row, int column)
         {
-            byte predictedValue = 0;
+            int predictedValue = 0;
             int temp;
 
-            byte a = getAFromMatrix(row, column);
-            byte b = getBFromMatrix(row, column);
-            byte c = getCFromMatrix(row, column);
+            int a = getAFromMatrix(row, column);
+            int b = getBFromMatrix(row, column);
+            int c = getCFromMatrix(row, column);
 
             switch (predictionType)
             {
                 case 0: /* 128 prediction */
                     {
-                        predictedValue = (byte)(bitmapSize / 2);
+                        predictedValue = (int)(bitmapSize / 2);
                         break;
                     }
                 case 1: /* A prediction*/
@@ -205,25 +205,25 @@ namespace Prediction
                 case 4: /* A+B-C prediction */
                     {
                         temp = a + b - c;
-                        predictedValue = (byte)getPixelValueWithinInterval(temp);
+                        predictedValue = (int)getPixelValueWithinInterval(temp);
                         break;
                     }
                 case 5: /* A+(B-C)/2 prediction */
                     {
                         temp = a + (b - c) / 2;
-                        predictedValue = (byte)getPixelValueWithinInterval(temp);
+                        predictedValue = (int)getPixelValueWithinInterval(temp);
                         break;
                     }
                 case 6: /* B+(A-C)/2 prediction */
                     {
                         temp = b + (a - c) / 2;
-                        predictedValue = (byte)getPixelValueWithinInterval(temp);
+                        predictedValue = (int)getPixelValueWithinInterval(temp);
                         break;
                     }
                 case 7: /* (A+B)/2 prediction */
                     {
                         temp = (a + b) / 2;
-                        predictedValue = (byte)getPixelValueWithinInterval(temp);
+                        predictedValue = (int)getPixelValueWithinInterval(temp);
                         break;
                     }
                 case 8: /* jpegLS prediction */
@@ -243,7 +243,7 @@ namespace Prediction
                             }
                             else
                             {
-                                predictedValue = (byte)(a + b - c);
+                                predictedValue = (int)(a + b - c);
                             }
                         }
 
@@ -255,17 +255,17 @@ namespace Prediction
         }
 
         /* get pixel position */
-        private byte getAFromMatrix(int row, int column)
+        private int getAFromMatrix(int row, int column)
         {
             return pictureMatrix[row, column - 1];
         }
 
-        private byte getBFromMatrix(int row, int column)
+        private int getBFromMatrix(int row, int column)
         {
             return pictureMatrix[row - 1, column];
         }
 
-        private byte getCFromMatrix(int row, int column)
+        private int getCFromMatrix(int row, int column)
         {
             return pictureMatrix[row - 1, column - 1];
         }
@@ -295,8 +295,8 @@ namespace Prediction
             String compressedFile = pictureName + ".bmp[" + predictionType + "]" + ".pre";
             BitWriter bitWriter = new BitWriter(compressedFile);
 
-            /* Copy the first 1078 bytes from the original bmp file */
-            foreach(byte headerData in bitmapHeader)
+            /* Copy the first 1078 ints from the original bmp file */
+            foreach(int headerData in bitmapHeader)
             {
                bitWriter.writeNBits((int)headerData, 8);
             }
@@ -317,8 +317,8 @@ namespace Prediction
             String compressedFile = pictureName + ".bmp[" + predictionType + "]" + ".pre.decoded";
             BitWriter bitWriter = new BitWriter(compressedFile);
 
-            /* Copy the first 1078 bytes from the original bmp file */
-            foreach (byte headerData in bitmapHeader)
+            /* Copy the first 1078 ints from the original bmp file */
+            foreach (int headerData in bitmapHeader)
             {
                 bitWriter.writeNBits((int)headerData, 8);
             }
@@ -333,13 +333,25 @@ namespace Prediction
 
         private void writeMatrixToFile(BitWriter bitWriter, int noBits, int[,] matrix)
         {
+            int valueToWrite;
             for (int row = 0; row < bitmapSize; row++)
             {
                 for (int column = 0; column < bitmapSize; column++)
                 {
-                    bitWriter.writeNBits(matrix[row, column], noBits);
+                    valueToWrite = matrix[row, column];
+                    if (valueToWrite < 0)
+                    {
+                        bitWriter.writeBit(1); //1 = negative
+                        valueToWrite = valueToWrite * (-1);
+                    }
+                    else
+                    {
+                        bitWriter.writeBit(0); //0 = positive
+                    }
+                    bitWriter.writeNBits(valueToWrite, noBits - 1);
                 }
             }
+
         }
 
         public Bitmap createBitmapFromMatrix(int[,] matrix, double scaleValue)
@@ -390,23 +402,29 @@ namespace Prediction
             {
                 for (int column = 0; column < bitmapSize; column++)
                 {
-                    errorMatrixFromFile[row, column] = bitReader.readNBits(noBits);
+                    var positivity = bitReader.readBit();                                        
+                    errorMatrixFromFile[row, column] = bitReader.readNBits(noBits - 1);
+
+                    if (positivity == 1)
+                    {
+                        errorMatrixFromFile[row, column] = errorMatrixFromFile[row, column] * (-1);
+                    }
                 }
             }
 
             return errorMatrixFromFile;
         }
 
-        private byte[,] getPictureMatrixFromCompressedFile()
+        private int[,] getPictureMatrixFromCompressedFile()
         {
-            byte predictedValue;
-            byte[,] imageMatrix = new byte[bitmapSize, bitmapSize];
+            int predictedValue;
+            int[,] imageMatrix = new int[bitmapSize, bitmapSize];
             for (int row = 0; row < bitmapSize; row++)
             {
                 for (int column = 0; column < bitmapSize; column++)
                 {
                     predictedValue = getPredictedValueForPixel(imageMatrix, row, column);
-                    imageMatrix[row, column] = (byte)(predictedValue + errorMatrix[row, column]);
+                    imageMatrix[row, column] = (int)(predictedValue + errorMatrix[row, column]);
                 }               
             }
 
@@ -422,12 +440,12 @@ namespace Prediction
             return errorMatrix;
         }
 
-        public byte[,] getPredictionPictureMatrix()
+        public int[,] getPredictionPictureMatrix()
         {
             return pictureMatrix;
         }
 
-        public void writeMatrixToConsole(byte[,] matrix)
+        public void writeMatrixToConsole(int[,] matrix)
         {
             for (int row = 0; row < bitmapSize; row++)
             {
