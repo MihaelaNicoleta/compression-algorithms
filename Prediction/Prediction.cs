@@ -153,7 +153,56 @@ namespace Prediction
 
         private byte getValueFromPredictor(int row, int column)
         {
+            byte predictedValue;
 
+            switch(predictionType)
+            {
+                case 0: /* 128 prediction */
+                    {
+                        predictedValue = (byte)(bitmapSize / 2);
+                        break;
+                    }
+                case 1: /* A prediction*/
+                    {
+                        predictedValue = getAFromMatrix(row, column);
+                        break;
+                    }
+                case 2: /* B prediction */
+                    {
+                        predictedValue = getBFromMatrix(row, column);
+                        break;
+                    }
+                case 3: /* C prediction */
+                    {
+                        predictedValue = getCFromMatrix(row, column);
+                        break;
+                    }
+                case 4: /* A+B+C prediction */
+                    {
+                        predictedValue = getAFromMatrix(row, column);
+                        break;
+                    }
+                case 5: /* A+(B-C)/2 prediction */
+                    {
+
+                        break;
+                    }
+                case 6: /* B+(A-C)/2 prediction */
+                    {
+
+                        break;
+                    }
+                case 7: /* (A+B)/2 prediction */
+                    {
+
+                        break;
+                    }
+                case 8: /* jpegLS prediction */
+                    {
+
+                        break;
+                    }
+            }
 
             return 0;
         }
