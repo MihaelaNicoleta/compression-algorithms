@@ -51,13 +51,30 @@ namespace Prediction
             errorMatrix = getErrorMatrix(pictureMatrix, predictionMatrix);
             
             bitReader.cleanUp();
+
+            //writeMatrixToConsole(errorMatrix);
+            //Console.WriteLine("------------------------------------");
             
             return true;
         }
 
-        public bool decompress()
+        public bool decompress(String compressedFileToRead)
         {
+            BitReader bitReader = new BitReader(compressedFileToRead);
 
+            /* read header */
+            bitmapHeader = getHeaderFromPicture(bitReader, bitmapHeaderSize);
+
+            /* prediction type */
+            predictionType = bitReader.readNBits(4);
+
+            /* error matrix */
+            errorMatrix = getErrorMatrixFromCompressedFile(bitReader, 9);
+
+            bitReader.cleanUp();
+
+            //writeMatrixToConsole(errorMatrix);
+            //Console.WriteLine("------------------------------------");
 
             return true;
         }
@@ -80,9 +97,9 @@ namespace Prediction
 
         private byte[] getHeaderFromPicture(BitReader bitReader, int noBitsToRead)
         {
-            byte[] bmpHeader = new byte[noBitsToRead];
+            byte[] bmpHeader = new byte[bitmapHeaderSize];
 
-            for(int i = 0; i < noBitsToRead; i += 8)
+            for(int i = 0; i < bitmapHeaderSize; i++)
             {
                 bmpHeader[i] = (byte)bitReader.readNBits(8);
             }
@@ -278,7 +295,7 @@ namespace Prediction
             /* Copy the first 1078 bytes from the original bmp file */
             foreach(byte headerData in bitmapHeader)
             {
-                bitWriter.writeNBits(headerData, 8);
+               bitWriter.writeNBits((int)headerData, 8);
             }
 
             /* Write another 4 BITS with the value meaning what prediction was selected */
@@ -312,7 +329,7 @@ namespace Prediction
             {
                 for (int column = 0; column < bitmapSize; column++)
                 {
-                    pixel = (int)((bitmapSize/2) + scaleValue * errorMatrix[row, column]);
+                    pixel = (int)((bitmapSize/2) + errorMatrix[row, column] * scaleValue);
                     bitmapFromMatrix.SetPixel(column, row, getColorValueForPixel(pixel));
                 }
             }
@@ -328,9 +345,9 @@ namespace Prediction
             }
             else
             {
-                if (pixel > bitmapSize)
+                if (pixel > bitmapSize - 1)
                 {
-                    pixel = bitmapSize;
+                    pixel = bitmapSize - 1;
                 }
             }
 
@@ -343,6 +360,20 @@ namespace Prediction
             return Color.FromArgb(pixelValue, pixelValue, pixelValue);
         }
 
+        private byte[,] getErrorMatrixFromCompressedFile(BitReader bitReader, int noBits)
+        {
+            byte[,] errormatrix = new byte[bitmapSize, bitmapSize];
+
+            for (int row = 0; row < bitmapSize; row++)
+            {
+                for (int column = 0; column < bitmapSize; column++)
+                {
+                    errormatrix[row, column] = (byte)bitReader.readNBits(9);
+                }
+            }
+
+            return errorMatrix;
+        }
 
 
         /* for UI */
@@ -350,6 +381,20 @@ namespace Prediction
         public byte[,] getPredictionErrorMatrix()
         {
             return errorMatrix;
+        }
+
+
+        public void writeMatrixToConsole(byte[,] matrix)
+        {
+            for (int row = 0; row < bitmapSize; row++)
+            {
+                for (int column = 0; column < bitmapSize; column++)
+                {
+                    Console.Write(matrix[row, column]);
+                    Console.Write(" ");
+                }
+                Console.WriteLine();
+            }
         }
 
     }

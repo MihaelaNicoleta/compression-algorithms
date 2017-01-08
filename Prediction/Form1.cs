@@ -111,7 +111,20 @@ namespace Prediction
 
         private void btnDecode_Click(object sender, EventArgs e)
         {
+            if (compressedPictureName != "")
+            {
+                compresser = new Prediction();
+                var ok = compresser.decompress(compressedPictureName);
 
+                if (ok == true)
+                {
+                    tbMessage.Text = "Compression was a great success.\r\n";
+                }
+            }
+            else
+            {
+                throw new Exception("You haven't selected any file.");
+            }
         }
 
         private void btnSaveDecoded_Click(object sender, EventArgs e)
