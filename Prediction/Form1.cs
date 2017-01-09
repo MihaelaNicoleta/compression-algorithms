@@ -154,8 +154,7 @@ namespace Prediction
                                       .FirstOrDefault(r => r.Checked);
 
             checkedRadioButtonIndex = (checkedRadioButton != null) ? Convert.ToInt32(checkedRadioButton.Tag) : 0;
-
-            double scaleValue = (double)nudHistogram.Value;
+            
             histogram = new Histogram();
             
             int[] frequencies = null;
@@ -172,7 +171,9 @@ namespace Prediction
                 case 1:
                     {
                         frequencies = histogram.getFrequenciesFromMatrix(originalPictureMatrix, 255);
-                        xValues = histogram.generateXAxesValuesList(-255, 255);
+
+                        // xValues should start from -255
+                        xValues = histogram.generateXAxesValuesList(0, 255);
                         break;
                     }
                 case 2:
