@@ -25,11 +25,24 @@ namespace Prediction
                 frequencies[i] = 0;
             }
 
+            int frequencyValue;
             for (int row = 0; row < matrixSize; row++)
             {
                 for (int column = 0; column < matrixSize; column++)
                 {
-                    frequencies[matrix[row, column]]++;
+                    frequencyValue = matrix[row, column];
+                    if (frequencyValue < 0)
+                    {
+                        frequencyValue = 0;
+                    }
+                    else
+                    {
+                        if (frequencyValue > matrixSize)
+                        {
+                            frequencyValue = 255;
+                        }
+                    }
+                    frequencies[frequencyValue]++;
                 }
             }
             return frequencies;

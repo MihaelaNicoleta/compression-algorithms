@@ -170,7 +170,7 @@ namespace Prediction
                     }
                 case 1:
                     {
-                        frequencies = histogram.getFrequenciesFromMatrix(originalPictureMatrix, 255);
+                        frequencies = histogram.getFrequenciesFromMatrix(errorMatrix, 255);
 
                         // xValues should start from -255
                         xValues = histogram.generateXAxesValuesList(0, 255);
