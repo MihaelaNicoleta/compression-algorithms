@@ -156,32 +156,34 @@ namespace Prediction
             checkedRadioButtonIndex = (checkedRadioButton != null) ? Convert.ToInt32(checkedRadioButton.Tag) : 0;
 
             double scaleValue = (double)nudHistogram.Value;
-            histogram = new Histogram(scaleValue);
+            histogram = new Histogram();
+            
+            int[] frequencies = null;
+            List<int> xValues = new List<int>();
 
             switch (checkedRadioButtonIndex)
             {
                 case 0:
                     {
-                        histogram.drawHistogram(originalPictureMatrix);
+                        frequencies = histogram.getFrequenciesFromMatrix(originalPictureMatrix, 256);                        
+                        xValues = histogram.generateXAxesValuesList(0, 256);                   
                         break;
                     }
                 case 1:
                     {
-                        histogram.drawHistogram(errorMatrix);
+                        frequencies = histogram.getFrequenciesFromMatrix(originalPictureMatrix, 255);
+                        xValues = histogram.generateXAxesValuesList(-255, 255);
                         break;
                     }
                 case 2:
                     {
-                        histogram.drawHistogram(decompressedPictureMatrix);
+                        frequencies = histogram.getFrequenciesFromMatrix(decompressedPictureMatrix, 256);
+                        xValues = histogram.generateXAxesValuesList(0, 256);                        
                         break;
                     }
-                default:
-                    {
-
-                        break;
-                    }
-
             }
+
+            chartHistogram.Series[0].Points.DataBindXY(xValues, frequencies);
 
         }
         

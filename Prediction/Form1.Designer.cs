@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.rb128 = new System.Windows.Forms.RadioButton();
             this.rbA = new System.Windows.Forms.RadioButton();
@@ -51,23 +50,21 @@
             this.btnDecode = new System.Windows.Forms.Button();
             this.btnSaveDecoded = new System.Windows.Forms.Button();
             this.btnHistogram = new System.Windows.Forms.Button();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pbDecoded = new System.Windows.Forms.PictureBox();
             this.pbError = new System.Windows.Forms.PictureBox();
             this.pbOriginal = new System.Windows.Forms.PictureBox();
             this.gbHistogram = new System.Windows.Forms.GroupBox();
-            this.nudHistogram = new System.Windows.Forms.NumericUpDown();
             this.gbPredictionType = new System.Windows.Forms.GroupBox();
             this.nudErrorMatrix = new System.Windows.Forms.NumericUpDown();
             this.tbMessage = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.chartHistogram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbError)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).BeginInit();
             this.gbHistogram.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudHistogram)).BeginInit();
             this.gbPredictionType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudErrorMatrix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartHistogram)).BeginInit();
             this.SuspendLayout();
             // 
             // rb128
@@ -286,29 +283,13 @@
             // 
             // btnHistogram
             // 
-            this.btnHistogram.Location = new System.Drawing.Point(17, 156);
+            this.btnHistogram.Location = new System.Drawing.Point(17, 135);
             this.btnHistogram.Name = "btnHistogram";
             this.btnHistogram.Size = new System.Drawing.Size(124, 66);
             this.btnHistogram.TabIndex = 31;
             this.btnHistogram.Text = "Show histogram";
             this.btnHistogram.UseVisualStyleBackColor = true;
             this.btnHistogram.Click += new System.EventHandler(this.btnHistogram_Click);
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(429, 417);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(673, 231);
-            this.chart1.TabIndex = 32;
-            this.chart1.Text = "chart1";
             // 
             // pbDecoded
             // 
@@ -336,7 +317,6 @@
             // 
             // gbHistogram
             // 
-            this.gbHistogram.Controls.Add(this.nudHistogram);
             this.gbHistogram.Controls.Add(this.btnHistogram);
             this.gbHistogram.Controls.Add(this.rbDecoded);
             this.gbHistogram.Controls.Add(this.rbError);
@@ -347,13 +327,6 @@
             this.gbHistogram.TabIndex = 36;
             this.gbHistogram.TabStop = false;
             this.gbHistogram.Text = "Histogram";
-            // 
-            // nudHistogram
-            // 
-            this.nudHistogram.Location = new System.Drawing.Point(17, 118);
-            this.nudHistogram.Name = "nudHistogram";
-            this.nudHistogram.Size = new System.Drawing.Size(70, 22);
-            this.nudHistogram.TabIndex = 40;
             // 
             // gbPredictionType
             // 
@@ -382,17 +355,31 @@
             // 
             // tbMessage
             // 
-            this.tbMessage.Location = new System.Drawing.Point(236, 700);
+            this.tbMessage.Location = new System.Drawing.Point(408, 700);
             this.tbMessage.Multiline = true;
             this.tbMessage.Name = "tbMessage";
-            this.tbMessage.Size = new System.Drawing.Size(624, 38);
+            this.tbMessage.Size = new System.Drawing.Size(673, 38);
             this.tbMessage.TabIndex = 39;
+            // 
+            // chartHistogram
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartHistogram.ChartAreas.Add(chartArea1);
+            this.chartHistogram.Location = new System.Drawing.Point(408, 386);
+            this.chartHistogram.Name = "chartHistogram";
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.chartHistogram.Series.Add(series1);
+            this.chartHistogram.Size = new System.Drawing.Size(673, 282);
+            this.chartHistogram.TabIndex = 41;
+            this.chartHistogram.Text = "Hisogram";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 750);
+            this.Controls.Add(this.chartHistogram);
             this.Controls.Add(this.tbMessage);
             this.Controls.Add(this.nudErrorMatrix);
             this.Controls.Add(this.gbPredictionType);
@@ -400,7 +387,6 @@
             this.Controls.Add(this.pbOriginal);
             this.Controls.Add(this.pbError);
             this.Controls.Add(this.pbDecoded);
-            this.Controls.Add(this.chart1);
             this.Controls.Add(this.btnSaveDecoded);
             this.Controls.Add(this.btnDecode);
             this.Controls.Add(this.btnLoadEncoded);
@@ -410,16 +396,15 @@
             this.Controls.Add(this.btnLoadImage);
             this.Name = "Form1";
             this.Text = "Prediction";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDecoded)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbError)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOriginal)).EndInit();
             this.gbHistogram.ResumeLayout(false);
             this.gbHistogram.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudHistogram)).EndInit();
             this.gbPredictionType.ResumeLayout(false);
             this.gbPredictionType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudErrorMatrix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartHistogram)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,15 +431,14 @@
         private System.Windows.Forms.Button btnDecode;
         private System.Windows.Forms.Button btnSaveDecoded;
         private System.Windows.Forms.Button btnHistogram;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.PictureBox pbDecoded;
         private System.Windows.Forms.PictureBox pbError;
         private System.Windows.Forms.PictureBox pbOriginal;
         private System.Windows.Forms.GroupBox gbHistogram;
         private System.Windows.Forms.GroupBox gbPredictionType;
-        private System.Windows.Forms.NumericUpDown nudHistogram;
         private System.Windows.Forms.NumericUpDown nudErrorMatrix;
         private System.Windows.Forms.TextBox tbMessage;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartHistogram;
     }
 }
 

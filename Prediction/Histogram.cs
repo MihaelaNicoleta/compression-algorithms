@@ -10,26 +10,43 @@ namespace Prediction
     class Histogram
     {
 
-        Bitmap histogramPicture;
-        double scaleValue;
+        //double scaleValue;
 
         public Histogram()
         {
 
         }
 
-        public Histogram(double scaleValue)
+        public int[] getFrequenciesFromMatrix(int[,] matrix, int matrixSize)
         {
-            this.scaleValue = scaleValue;
+            int[] frequencies = new int[matrixSize];
+            for (int i = 0; i < matrixSize; i++)
+            {
+                frequencies[i] = 0;
+            }
+
+            for (int row = 0; row < matrixSize; row++)
+            {
+                for (int column = 0; column < matrixSize; column++)
+                {
+                    frequencies[matrix[row, column]]++;
+                }
+            }
+            return frequencies;
         }
 
-        public Bitmap drawHistogram(int[,] matrix)
+        public List<int> generateXAxesValuesList(int leftLimit, int rightLimit)
         {
+            List<int> xAxesValues = new List<int>(rightLimit);
 
+            for(int i = leftLimit; i < rightLimit; i++)
+            {
+                xAxesValues.Add(i);
+            }
 
-            return histogramPicture;
+            return xAxesValues;
+
         }
-
 
     }
 }
